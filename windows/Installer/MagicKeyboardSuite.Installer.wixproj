@@ -3,7 +3,7 @@
     <OutputName>MagicKeyboardSuite-Setup</OutputName>
     <InstallerPlatform>x64</InstallerPlatform>
 
-    <ProductVersion Condition="'$(ProductVersion)' == ''">3.1.0</ProductVersion>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">1.0.0</ProductVersion>
     <ArtifactsDir Condition="'$(ArtifactsDir)' == ''">$(MSBuildProjectDirectory)\..\artifacts</ArtifactsDir>
     <AppPublishDir Condition="'$(AppPublishDir)' == ''">$(ArtifactsDir)\app</AppPublishDir>
     <AgentDir Condition="'$(AgentDir)' == ''">$(ArtifactsDir)\agent</AgentDir>

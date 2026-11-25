@@ -72,8 +72,10 @@ namespace MagicKeyboardSuite.Tests
         [Fact]
         public void L10n_SupportsAllThreeLanguagesAndFormatsPlaceholders()
         {
+            Assert.Equal("1.0.0", AppInfo.Version);
+
             L10n.OverrideLanguage = "ca";
-            Assert.Contains("3.1.0", L10n.AppVersion("3.1.0"));
+            Assert.Contains("1.0.0", L10n.AppVersion(AppInfo.Version));
 
             L10n.OverrideLanguage = "es";
             Assert.Equal("Desconectado", L10n.ToggleOff == "Desactivado" ? "Desconectado" : L10n.ToggleOff);

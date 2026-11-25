@@ -12,7 +12,7 @@ namespace MagicKeyboardSuite.Shared
     {
         public const uint AppleUsbVendorId = 0x05AC;
         public const uint AppleBtVendorId = 0x004C;
-        public const string AgentMutexName = @"Global\MagicKeyboardSuite_Agent_Hook_v3";
+        public const string AgentMutexName = @"Global\MagicKeyboardSuite_Agent_Hook_v1";
         public const string ReloadSettingsMessageName = "MagicKeyboardSuite_ReloadSettings";
 
         private static readonly Regex AppleVidInPathRegex = new Regex(

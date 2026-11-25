@@ -597,5 +597,5 @@ enum L10n {
 }
 
 enum AppInfo {
-    static let version = "3.1.0"
+    static let version = "1.0.0"
 }

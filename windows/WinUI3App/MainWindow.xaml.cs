@@ -29,7 +29,7 @@ namespace MagicKeyboardSuite.WinUI3
 
         private static readonly string[] AppLanguageCodes = { "auto", "ca", "es", "en" };
 
-        private const string MsiUpgradeCode = "{7C91F4A0-2D18-4E9B-B102-9A84C6E10F33}";
+        private const string MsiUpgradeCode = "{8E42A1B0-5C39-4D7E-9A14-2F6C8B0E1D10}";
 
         private const int MinWindowWidthDips = 980;
         private const int MinWindowHeightDips = 660;

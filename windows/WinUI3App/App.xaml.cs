@@ -17,7 +17,7 @@ namespace MagicKeyboardSuite.WinUI3
         {
             try
             {
-                var mainInstance = AppInstance.FindOrRegisterForKey("MagicKeyboardSuite_MainInstance_v3");
+                var mainInstance = AppInstance.FindOrRegisterForKey("MagicKeyboardSuite_MainInstance_v1");
                 if (!mainInstance.IsCurrent)
                 {
                     var actArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
