@@ -11,6 +11,7 @@ const I18N = {
     "cta.win": "Descargar para Windows 11",
     "cta.winSub": ".msi • GitHub Releases",
     "cta.source": "Ver código en GitHub",
+    "sim.version": "Versión 1.0.0",
     "sim.tabBt": "Teclados Bluetooth",
     "sim.tabLayout": "Disposición e idioma",
     "sim.tabShortcuts": "Atajos y multimedia",
@@ -88,6 +89,7 @@ const I18N = {
     "cta.win": "Baixar per a Windows 11",
     "cta.winSub": ".msi • GitHub Releases",
     "cta.source": "Veure codi a GitHub",
+    "sim.version": "Versió 1.0.0",
     "sim.tabBt": "Teclats Bluetooth",
     "sim.tabLayout": "Disposició i idioma",
     "sim.tabShortcuts": "Dreceres i multimèdia",
@@ -165,6 +167,7 @@ const I18N = {
     "cta.win": "Download for Windows 11",
     "cta.winSub": ".msi • GitHub Releases",
     "cta.source": "View on GitHub",
+    "sim.version": "Version 1.0.0",
     "sim.tabBt": "Bluetooth keyboards",
     "sim.tabLayout": "Layout & language",
     "sim.tabShortcuts": "Shortcuts & media",
@@ -233,8 +236,8 @@ const I18N = {
 };
 
 function setLanguage(lang) {
-  const dict = I18N[lang] || I18N.es;
-  document.documentElement.lang = lang;
+  const dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = I18N[lang] ? lang : "en";
   try { localStorage.setItem("mks_lang", lang); } catch {}
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -284,8 +287,8 @@ function initRepoLinks() {
 document.addEventListener("DOMContentLoaded", () => {
   let saved = null;
   try { saved = localStorage.getItem("mks_lang"); } catch {}
-  const browserLang = (navigator.language || "es").slice(0, 2).toLowerCase();
-  const initialLang = saved || (I18N[browserLang] ? browserLang : "es");
+  const browserLang = (navigator.language || "en").slice(0, 2).toLowerCase();
+  const initialLang = saved || (I18N[browserLang] ? browserLang : "en");
   setLanguage(initialLang);
   initRepoLinks();
 

@@ -1,34 +1,50 @@
-# Guía de Contribución / Contributing Guide
+# Guía de Contribución y Arquitectura / Contributing & Architecture
 
-## Arquitectura de Fuente Única (`MagicKeyboardSuite/shared/`)
+## Estructura del Repositorio
 
-Para que la aplicación de **macOS (SwiftUI)** y la de **Windows 11 (WinUI 3)** mantengan siempre el mismo diseño, textos y ajustes, ambas plataformas generan su código compartido desde `MagicKeyboardSuite/shared/`:
-
-1. **Diseño (`shared/design/tokens.json`)**: Colores (claro/oscuro), radios, espaciados, tamaños, tipografía e iconos (`SF Symbols` ↔ `Segoe Fluent Icons`).
-2. **Textos (`shared/strings/{es,ca,en}.json`)**: Todas las claves deben estar presentes en los tres idiomas (`es`, `ca`, `en`).
-3. **Ajustes (`shared/settings.json`)**: Preferencias compartidas entre `UserDefaults` (`com.magickeyboardsuite`) y el Registro (`HKCU\Software\MagicKeyboardSuite`).
-
-### Regenerar código compartido
-
-Tras editar cualquier archivo de `shared/` o `VERSION`, ejecuta:
-
-```bash
-python3 MagicKeyboardSuite/shared/tools/generate.py
+```text
+Magic-Keyboard-Suite/
+├── VERSION                  # Versión única leída por macOS, Windows e instaladores
+├── shared/                  # Fuente única de verdad multiplataforma
+│   ├── assets/              # Icono maestro (icon-1024.png, AppIcon.icns, AppIcon.ico)
+│   ├── design/tokens.json   # Paleta claro/oscuro, radios, espaciados, tamaños e iconos
+│   ├── layouts.json         # Las 17 disposiciones oficiales de Apple (macOS + Windows)
+│   ├── settings.json        # Esquema compartido (UserDefaults <-> HKCU\Software\MagicKeyboardSuite)
+│   ├── strings/             # Traducciones sincronizadas (ca.json, en.json, es.json)
+│   └── tools/generate.py    # Generador de código Swift, XAML y C#
+├── macos/                   # App nativa SwiftUI (IOBluetooth + IOKit + Carbon TIS + SMAppService)
+├── windows/                 # Solución Windows 11 (MagicKeyboardSuite.sln)
+│   ├── Shared/              # Utilidades comunes WinUI 3 + Agente y código generado
+│   ├── WinUI3App/           # Interfaz nativa WinUI 3 (.NET 8, Mica, SettingsCard reutilizable)
+│   ├── Agent/               # Servicio de bandeja y motor WH_KEYBOARD_LL + RawInput (.NET 4.8)
+│   └── Installer/           # Instalador Windows Installer .msi (WiX Toolset v5)
+├── tests/                   # Tests unitarios Python (generador/XAML) y xUnit (.NET 8)
+└── docs/                    # Sitio web estático para GitHub Pages
 ```
 
-Para validar en CI que los archivos generados están sincronizados:
+## Fuente Única (`shared/`)
+
+Para mantener paridad visual y funcional entre **macOS (SwiftUI)** y **Windows 11 (WinUI 3)**, nunca edites a mano los archivos dentro de `Generated/`. Tras modificar `VERSION` o cualquier archivo en `shared/`, regenera el código compartido:
 
 ```bash
-python3 MagicKeyboardSuite/shared/tools/generate.py --check
+python3 shared/tools/generate.py
+```
+
+Para comprobar que los archivos generados están sincronizados y ejecutar las pruebas unitarias:
+
+```bash
+python3 shared/tools/generate.py --check
+python3 -m unittest discover -s tests -v
+dotnet test tests/MagicKeyboardSuite.Tests/MagicKeyboardSuite.Tests.csproj -c Release
 ```
 
 ## Compilación
 
-- **macOS (SwiftUI):**
+- **macOS (SwiftUI `.app` + `.dmg`):**
   ```bash
-  ./MagicKeyboardSuite/macOS/build.sh --dmg
+  ./macos/build.sh --dmg
   ```
 - **Windows 11 (WinUI 3 + Agente + Instalador `.msi`):**
   ```powershell
-  powershell -ExecutionPolicy Bypass -File .\MagicKeyboardSuite\Windows\build.ps1
+  powershell -ExecutionPolicy Bypass -File .\windows\build.ps1
   ```

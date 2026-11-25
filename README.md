@@ -1,7 +1,7 @@
 # Magic Keyboard Suite
 
 <p align="center">
-  <img src="MagicKeyboardSuite/shared/assets/icon-1024.png" alt="Magic Keyboard Suite Icon" width="108" height="108" />
+  <img src="shared/assets/icon-1024.png" alt="Magic Keyboard Suite Icon" width="108" height="108" />
 </p>
 
 <p align="center">
@@ -30,10 +30,10 @@
 - **Bluetooth i cable USB (Lightning / USB-C):** Funciona tant sense fils (alliberant i reconnectant l'aparellament Bluetooth entre Mac i PC en un clic) com connectat per cable USB.
 - **Indicador de bateria en temps real:** Llegeix el percentatge de bateria dels teclats connectats (`IORegistry` a macOS i PnP/GATT a Windows).
 - **Cada tecla coincideix amb la seva serigrafia:**
-  - 17 disposicions oficials d'Apple (amb importador automàtic de Boot Camp des de la benvinguda a Windows) i intercanvi ISO automàtic (`[º ª \]` al costat de l'`1` i `[< >]` al costat de `Majúscules` esquerre).
-  - `Option (⌥)` esquerra escriu `@ # € [ ] { } \ | ~` igual a macOS i a Windows.
+  - 17 disposicions oficials d'Apple (amb importador automàtic verificat amb signatura Authenticode des de Boot Camp a Windows) i intercanvi ISO automàtic (`[º ª \]` al costat de l'`1` i `[< >]` al costat de `Majúscules` esquerre).
+  - `Option (⌥)` esquerra escriu els símbols de tercer nivell (`@ # € [ ] { } \ | ~`) igual a macOS i a Windows en qualsevol de les 17 disposicions.
   - Canvi directe de disposició activa a macOS (`Carbon TIS`) i a Windows.
-- **Dreceres de Mac a Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab`, `⌘ + Q`, `⌘ + Espai`, `⌘ + Fletxes` (`Inici / Fi / RePàg / AvPàg`) i mode opcional d'`Option (⌥)` dret com a `Fn` (`Supr`, navegació i `F1–F12`), aplicats només a maquinari d'Apple (`VID_05AC` / `004C`).
+- **Dreceres de Mac a Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab` (mantenint `⌘` per navegar entre apps), `⌘ + Q`, `⌘ + Espai`, `⌘ + Fletxes` (`Inici / Fi / RePàg / AvPàg`) i mode opcional d'`Option (⌥)` dret com a `Fn` (`Supr`, navegació i `F1–F12`), aplicats només a maquinari d'Apple (`VID_05AC` / `004C`).
 - **Disseny natiu unificat i multiidioma (`Català`, `English`, `Español`):**
   - **macOS:** Swift + SwiftUI natiu (`macOS 13+`).
   - **Windows 11:** C# + WinUI 3 (.NET 8) + Servei en segon pla a la safata del sistema + Instal·lador `.msi` (WiX v5).
@@ -47,12 +47,12 @@
 
 ```bash
 # macOS (.app + .dmg)
-./MagicKeyboardSuite/macOS/build.sh --dmg
+./macos/build.sh --dmg
 ```
 
 ```powershell
 # Windows 10/11 x64 (.msi)
-powershell -ExecutionPolicy Bypass -File .\MagicKeyboardSuite\Windows\build.ps1
+powershell -ExecutionPolicy Bypass -File .\windows\build.ps1
 ```
 
 ---
@@ -66,11 +66,11 @@ powershell -ExecutionPolicy Bypass -File .\MagicKeyboardSuite\Windows\build.ps1
 - **Bluetooth & USB Cable (Lightning / USB-C):** Works wirelessly (1-click Bluetooth pairing handover between Mac and PC) as well as plugged in via USB.
 - **Live Battery Level Badge:** Displays real-time battery percentage on macOS (`IORegistry`) and Windows (PnP/GATT).
 - **True Apple Layout & ISO Fix:**
-  - 17 official Apple layouts (with automatic Boot Camp layout importer during Windows onboarding) and automatic ISO key swap (`[º ª \]` next to `1` and `[< >]` next to left `Shift`).
-  - Left `Option (⌥)` types `@ # € [ ] { } \ | ~` identically on macOS and Windows.
+  - 17 official Apple layouts (with Authenticode-verified Boot Camp layout importer during Windows onboarding) and automatic ISO key swap (`[º ª \]` next to `1` and `[< >]` next to left `Shift`).
+  - Left `Option (⌥)` types third-level symbols (`@ # € [ ] { } \ | ~`) identically on macOS and Windows across all 17 layouts.
   - Instant layout switching on macOS (`Carbon TIS`) and Windows.
-- **Mac Shortcuts on Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab`, `⌘ + Q`, `⌘ + Space`, `⌘ + Arrows` (`Home / End / Page Up / Page Down`), plus an optional **Right `Option (⌥)` as `Fn`** mode (`Delete`, navigation, and `F1–F12`), scoped exclusively to Apple hardware (`VID_05AC` / `004C`).
-- **Native SwiftUI & WinUI 3 Apps (`Català`, `English`, `Español`):** Powered by a single source of truth in [`MagicKeyboardSuite/shared/`](MagicKeyboardSuite/shared/).
+- **Mac Shortcuts on Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab` (persistent app switcher while holding `⌘`), `⌘ + Q`, `⌘ + Space`, `⌘ + Arrows` (`Home / End / Page Up / Page Down`), plus an optional **Right `Option (⌥)` as `Fn`** mode (`Delete`, navigation, and `F1–F12`), scoped exclusively to Apple hardware (`VID_05AC` / `004C`).
+- **Native SwiftUI & WinUI 3 Apps (`Català`, `English`, `Español`):** Powered by a single source of truth in [`shared/`](shared/).
 
 ---
 
@@ -83,10 +83,10 @@ powershell -ExecutionPolicy Bypass -File .\MagicKeyboardSuite\Windows\build.ps1
 - **Bluetooth y cable USB (Lightning / USB-C):** Funciona tanto de forma inalámbrica (liberando y reconectando el emparejamiento Bluetooth entre Mac y PC en un clic) como conectado por cable USB.
 - **Indicador de batería en tiempo real:** Lee el porcentaje de batería de tus teclados conectados (`IORegistry` en macOS y PnP/GATT en Windows).
 - **Cada tecla coincide con su serigrafía:**
-  - 17 disposiciones oficiales de Apple (con importador automático de Boot Camp desde la bienvenida en Windows) e intercambio ISO automático (`[º ª \]` junto al `1` y `[< >]` junto a `Mayús` izquierdo).
-  - `Option (⌥)` izquierda escribe `@ # € [ ] { } \ | ~` igual en macOS y en Windows.
+  - 17 disposiciones oficiales de Apple (con importador automático verificado mediante firma Authenticode desde Boot Camp en Windows) e intercambio ISO automático (`[º ª \]` junto al `1` y `[< >]` junto a `Mayús` izquierdo).
+  - `Option (⌥)` izquierda escribe los símbolos de tercer nivel (`@ # € [ ] { } \ | ~`) igual en macOS y en Windows en cualquiera de las 17 disposiciones.
   - Cambio directo de disposición activa en macOS (`Carbon TIS`) y en Windows.
-- **Atajos de Mac en Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab`, `⌘ + Q`, `⌘ + Espacio`, `⌘ + Flechas` (`Inicio / Fin / RePág / AvPág`) y modo opcional de `Option (⌥)` derecho como `Fn` (`Supr`, navegación y `F1–F12`), aplicados solo a hardware de Apple (`VID_05AC` / `004C`).
+- **Atajos de Mac en Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab` (manteniendo `⌘` para cambiar entre varias apps), `⌘ + Q`, `⌘ + Espacio`, `⌘ + Flechas` (`Inicio / Fin / RePág / AvPág`) y modo opcional de `Option (⌥)` derecho como `Fn` (`Supr`, navegación y `F1–F12`), aplicados solo a hardware de Apple (`VID_05AC` / `004C`).
 - **Diseño nativo unificado y multiidioma (`Català`, `English`, `Español`):**
   - **macOS:** Swift + SwiftUI nativo (`macOS 13+`).
   - **Windows 11:** C# + WinUI 3 (.NET 8) + Agente en bandeja del sistema + Instalador `.msi` (WiX v5).

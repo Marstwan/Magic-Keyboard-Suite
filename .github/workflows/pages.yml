@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
     paths:
       - 'docs/**'
+      - 'shared/assets/icon-1024.png'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -26,6 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Copiar icono maestro desde shared/assets
+        run: |
+          mkdir -p docs/assets
+          cp shared/assets/icon-1024.png docs/assets/icon.png
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

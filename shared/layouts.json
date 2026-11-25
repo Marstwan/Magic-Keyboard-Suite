@@ -1,0 +1,175 @@
+{
+  "$comment": "Fuente única de las 17 disposiciones oficiales de teclado Apple (macOS Carbon TIS + Windows Boot Camp). Genera con `python3 shared/tools/generate.py`.",
+  "layouts": [
+    {
+      "klid": "a000040a",
+      "name": "Español / Català (Apple)",
+      "dllName": "SpanishA.dll",
+      "layoutId": "00c5",
+      "componentId": "C3364C7C44BC444A88A50459135D35B5",
+      "winLangRegex": "^(es|ca)",
+      "macInputSourceIDs": ["com.apple.keylayout.Spanish-ISO", "com.apple.keylayout.Spanish", "com.apple.keylayout.Catalan"],
+      "macPrimaryLang": "es"
+    },
+    {
+      "klid": "a0020409",
+      "name": "United States-International (Apple)",
+      "dllName": "IntlEngA.dll",
+      "layoutId": "00d0",
+      "componentId": "241A34D0-06DB-405e-8B4E-8CA2FC34D1C7",
+      "winLangRegex": "^en-INTL",
+      "macInputSourceIDs": ["com.apple.keylayout.USInternational-PC", "com.apple.keylayout.USExtended"],
+      "macPrimaryLang": "en"
+    },
+    {
+      "klid": "a0000409",
+      "name": "United States (Apple)",
+      "dllName": "USA.dll",
+      "layoutId": "00d1",
+      "componentId": "4E82857C983B44E5A9352052127677D5",
+      "winLangRegex": "^en-US",
+      "macInputSourceIDs": ["com.apple.keylayout.US", "com.apple.keylayout.ABC"],
+      "macPrimaryLang": "en"
+    },
+    {
+      "klid": "a0000809",
+      "name": "United Kingdom (Apple)",
+      "dllName": "BritishA.dll",
+      "layoutId": "00c0",
+      "componentId": "1A4D378083AD454BB4FE02F208614EB6",
+      "winLangRegex": "^en-GB",
+      "macInputSourceIDs": ["com.apple.keylayout.British", "com.apple.keylayout.British-PC"],
+      "macPrimaryLang": "en-GB"
+    },
+    {
+      "klid": "a000040c",
+      "name": "Français (Apple)",
+      "dllName": "FrenchA.dll",
+      "layoutId": "00c2",
+      "componentId": "2ECD3C77364749B18E910F9196B420FA",
+      "winLangRegex": "^fr",
+      "macInputSourceIDs": ["com.apple.keylayout.French-numerical", "com.apple.keylayout.French", "com.apple.keylayout.French-PC"],
+      "macPrimaryLang": "fr"
+    },
+    {
+      "klid": "a0000407",
+      "name": "Deutsch (Apple)",
+      "dllName": "GermanA.dll",
+      "layoutId": "00c3",
+      "componentId": "B616E2191BF048D4A554E5C6BE224AB4",
+      "winLangRegex": "^de",
+      "macInputSourceIDs": ["com.apple.keylayout.German", "com.apple.keylayout.German-DIN-2137"],
+      "macPrimaryLang": "de"
+    },
+    {
+      "klid": "a0000410",
+      "name": "Italiano (Apple)",
+      "dllName": "ItalianA.dll",
+      "layoutId": "00c4",
+      "componentId": "6401AAA6058F431181B445C26BEF22D9",
+      "winLangRegex": "^it",
+      "macInputSourceIDs": ["com.apple.keylayout.Italian-Pro", "com.apple.keylayout.Italian"],
+      "macPrimaryLang": "it"
+    },
+    {
+      "klid": "a0000416",
+      "name": "Português (Apple)",
+      "dllName": "PortuguA.dll",
+      "layoutId": "00ce",
+      "componentId": "326773935C8C4597B0738FE2084D44AD",
+      "winLangRegex": "^pt",
+      "macInputSourceIDs": ["com.apple.keylayout.Portuguese", "com.apple.keylayout.Brazilian-Pro", "com.apple.keylayout.Brazilian"],
+      "macPrimaryLang": "pt"
+    },
+    {
+      "klid": "a0000413",
+      "name": "Nederlands (Apple)",
+      "dllName": "DutchA.dll",
+      "layoutId": "00c1",
+      "componentId": "3844B95343FB43D68E9695D6E88F016E",
+      "winLangRegex": "^nl",
+      "macInputSourceIDs": ["com.apple.keylayout.Dutch"],
+      "macPrimaryLang": "nl"
+    },
+    {
+      "klid": "a000041d",
+      "name": "Svenska (Apple)",
+      "dllName": "SwedishA.dll",
+      "layoutId": "00c7",
+      "componentId": "8CC8067A1BFF4A0FAD38708DE4CD4BF1",
+      "winLangRegex": "^sv",
+      "macInputSourceIDs": ["com.apple.keylayout.Swedish-Pro", "com.apple.keylayout.Swedish"],
+      "macPrimaryLang": "sv"
+    },
+    {
+      "klid": "a0000406",
+      "name": "Dansk (Apple)",
+      "dllName": "DanishA.dll",
+      "layoutId": "00cc",
+      "componentId": "C3996498F423440FB9CE2732A821E7D9",
+      "winLangRegex": "^da",
+      "macInputSourceIDs": ["com.apple.keylayout.Danish"],
+      "macPrimaryLang": "da"
+    },
+    {
+      "klid": "a0000414",
+      "name": "Norsk (Apple)",
+      "dllName": "NorwayA.dll",
+      "layoutId": "00c9",
+      "componentId": "74BE397ABD8143E4960D38111394D1A3",
+      "winLangRegex": "^(nb|nn|no)",
+      "macInputSourceIDs": ["com.apple.keylayout.Norwegian", "com.apple.keylayout.NorwegianExtended"],
+      "macPrimaryLang": "nb"
+    },
+    {
+      "klid": "a000040b",
+      "name": "Suomi (Apple)",
+      "dllName": "FinnishA.dll",
+      "layoutId": "00cb",
+      "componentId": "ECE9937799D242F5AE0CAA446EDEDC62",
+      "winLangRegex": "^fi",
+      "macInputSourceIDs": ["com.apple.keylayout.Finnish", "com.apple.keylayout.FinnishExtended"],
+      "macPrimaryLang": "fi"
+    },
+    {
+      "klid": "a000100c",
+      "name": "Swiss (Apple)",
+      "dllName": "SwissA.dll",
+      "layoutId": "00c6",
+      "componentId": "CE4C7E2419DE400B8A553E1A5C3DCD04",
+      "winLangRegex": "^(de|fr|it)-CH",
+      "macInputSourceIDs": ["com.apple.keylayout.SwissGerman", "com.apple.keylayout.SwissFrench"],
+      "macPrimaryLang": "de-CH"
+    },
+    {
+      "klid": "a0000813",
+      "name": "Belgian (Apple)",
+      "dllName": "BelgiumA.dll",
+      "layoutId": "00cd",
+      "componentId": "D70C1682E8F24ED4B5B70AAD37B1BA42",
+      "winLangRegex": "^(nl|fr)-BE",
+      "macInputSourceIDs": ["com.apple.keylayout.Belgian"],
+      "macPrimaryLang": "nl-BE"
+    },
+    {
+      "klid": "a0000415",
+      "name": "Polski (Apple)",
+      "dllName": "PolishA.dll",
+      "layoutId": "00cf",
+      "componentId": "D3D2841618E34D09ABBCA0DA34A60FAE",
+      "winLangRegex": "^pl",
+      "macInputSourceIDs": ["com.apple.keylayout.PolishPro", "com.apple.keylayout.Polish"],
+      "macPrimaryLang": "pl"
+    },
+    {
+      "klid": "a0000419",
+      "name": "Russian (Apple)",
+      "dllName": "RussianA.dll",
+      "layoutId": "00c8",
+      "componentId": "B0F62A69BE9446488ED502E800DBC36C",
+      "winLangRegex": "^ru",
+      "macInputSourceIDs": ["com.apple.keylayout.Russian", "com.apple.keylayout.RussianWin", "com.apple.keylayout.Russian-Phonetic"],
+      "macPrimaryLang": "ru"
+    }
+  ]
+}
