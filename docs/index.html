@@ -14,7 +14,7 @@
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#" class="brand">
-        <img src="assets/icon.png" alt="Magic Keyboard Suite" />
+        <img src="assets/icon.png" onerror="this.onerror=null;this.src='../shared/assets/icon-1024.png';" alt="Magic Keyboard Suite" />
         <span>Magic Keyboard Suite</span>
         <span class="version-pill">v3.1.0</span>
       </a>
@@ -72,7 +72,7 @@
       <div id="sim-window" class="app-window win-mode">
         <div class="window-titlebar">
           <div class="win-title-left">
-            <img src="assets/icon.png" alt="" class="win-title-icon" />
+            <img src="assets/icon.png" onerror="this.onerror=null;this.src='../shared/assets/icon-1024.png';" alt="" class="win-title-icon" />
             <span class="window-title">Magic Keyboard Suite</span>
             <span class="version-pill">Versión 3.1.0</span>
           </div>
@@ -378,7 +378,7 @@
           <p data-i18n="os.buildMacDesc">Requiere Xcode Command Line Tools y Python 3:</p>
           <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
 cd Magic-Keyboard-Suite
-./MagicKeyboardSuite/macOS/build.sh --dmg</div>
+./macos/build.sh --dmg</div>
         </div>
 
         <div class="feature-card">
@@ -386,8 +386,8 @@ cd Magic-Keyboard-Suite
           <h3 data-i18n="os.buildWin">Generar tu propio .msi en Windows 11</h3>
           <p data-i18n="os.buildWinDesc">Requiere .NET 8 SDK y Python 3:</p>
           <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
-cd Magic-Keyboard-Suite\MagicKeyboardSuite\Windows
-powershell -ExecutionPolicy Bypass -File .\build.ps1</div>
+cd Magic-Keyboard-Suite
+powershell -ExecutionPolicy Bypass -File .\windows\build.ps1</div>
         </div>
       </div>
     </div>

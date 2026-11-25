@@ -1,15 +1,22 @@
-# Sistema operativo
+# Sistema operativo e IDEs
 .DS_Store
 Thumbs.db
+.vs/
+*.user
+
+# Cachés de Python
+__pycache__/
+*.py[cod]
 
 # Artefactos de compilación e instaladores locales
 **/bin/
 **/obj/
 **/.build/
-MagicKeyboardSuite/Windows/artifacts/
-MagicKeyboardSuite/Windows/*.msi
-MagicKeyboardSuite/macOS/*.dmg
-MagicKeyboardSuite/macOS/*.app/
+windows/artifacts/
+windows/*.msi
+macos/*.dmg
+macos/*.app/
+docs/assets/icon.png
 
 # Paquetes grandes externos de Boot Camp
 bootcamp*/

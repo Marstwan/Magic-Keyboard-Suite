@@ -8,19 +8,28 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   verify-shared:
-    name: Verificar tokens y textos compartidos
+    name: Verificar recursos compartidos y tests unitarios
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
       - name: Comprobar que los recursos generados están al día
-        run: python3 MagicKeyboardSuite/shared/tools/generate.py --check
+        run: python3 shared/tools/generate.py --check
+      - name: Ejecutar tests de generación y validación XAML
+        run: python3 -m unittest discover -s tests -v
+      - name: Ejecutar tests unitarios .NET y compilación del Agente
+        run: |
+          dotnet test tests/MagicKeyboardSuite.Tests/MagicKeyboardSuite.Tests.csproj -c Release --nologo
+          dotnet build windows/Agent/MagicKeyboardAgent.csproj -c Release --nologo -warnaserror
 
   build-macos:
     name: Compilar macOS (SwiftUI .app + .dmg)
@@ -29,11 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compilar y crear DMG
-        run: ./MagicKeyboardSuite/macOS/build.sh --dmg
+        run: ./macos/build.sh --dmg
       - uses: actions/upload-artifact@v4
         with:
           name: MagicKeyboardSuite-macOS-dmg
-          path: MagicKeyboardSuite/macOS/MagicKeyboardSuite-macOS.dmg
+          path: macos/MagicKeyboardSuite-macOS.dmg
 
   build-windows:
     name: Compilar Windows 11 (WinUI 3 + Agente + Instalador .msi)
@@ -46,17 +55,19 @@ jobs:
           dotnet-version: '8.0.x'
       - name: Compilar y generar MSI (WiX Toolset v5)
         shell: pwsh
-        run: ./MagicKeyboardSuite/Windows/build.ps1
+        run: ./windows/build.ps1
       - uses: actions/upload-artifact@v4
         with:
           name: MagicKeyboardSuite-Windows-msi
-          path: MagicKeyboardSuite/Windows/MagicKeyboardSuite-Setup.msi
+          path: windows/MagicKeyboardSuite-Setup.msi
 
   release:
     name: Publicar GitHub Release
     needs: [ build-macos, build-windows ]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/download-artifact@v4
         with:

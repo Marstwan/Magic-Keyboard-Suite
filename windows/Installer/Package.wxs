@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Magic Keyboard Suite - Instalador Windows Installer (WiX Toolset v5)
+
+  Instala:
+    - App WinUI 3 (autocontenida)   -> %ProgramFiles%\MagicKeyboardSuite\App
+    - Agente en segundo plano        -> %ProgramFiles%\MagicKeyboardSuite\MagicKeyboardAgent.exe
+    - Accesos directos (Menú Inicio y Escritorio) e inicio automático del agente
+
+  Nota Open Source:
+    Los drivers propietarios de Boot Camp (*A.dll) no se redistribuyen en el repositorio.
+    La propia app avisa al usuario si no están instalados y permite seleccionarlos desde el .zip
+    o carpeta extraída de Boot Camp para buscarlos e instalarlos automáticamente.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+
+  <Package Name="Magic Keyboard Suite"
+           Manufacturer="Magic Keyboard Suite"
+           Version="$(ProductVersion)"
+           UpgradeCode="{7C91F4A0-2D18-4E9B-B102-9A84C6E10F33}"
+           Scope="perMachine"
+           Language="3082"
+           Codepage="1252">
+
+    <SummaryInformation Description="Instalador de Magic Keyboard Suite" Manufacturer="Magic Keyboard Suite" />
+
+    <MajorUpgrade DowngradeErrorMessage="Ya hay instalada una versión más reciente de Magic Keyboard Suite." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="mszip" />
+
+    <!-- Acelera instalación y desinstalación: 1=sin punto de restauración, 2=costeado rápido, 4=menos eventos de progreso -->
+    <Property Id="MSIFASTINSTALL" Value="7" />
+
+    <Launch Condition="VersionNT64" Message="Magic Keyboard Suite requiere Windows de 64 bits (x64)." />
+
+    <!-- Entrada en Configuración > Aplicaciones (con icono unificado) -->
+    <Icon Id="AppIcon.ico" SourceFile="$(SharedAssetsDir)\AppIcon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+    <Property Id="ARPCONTACT" Value="Magic Keyboard Suite" />
+    <SetProperty Id="ARPINSTALLLOCATION" Value="[INSTALLFOLDER]" After="CostFinalize" />
+
+    <!-- Estructura de carpetas -->
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="MagicKeyboardSuite">
+        <Directory Id="APPFOLDER" Name="App" />
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder" />
+    <StandardDirectory Id="DesktopFolder" />
+
+    <Feature Id="Main" Title="Magic Keyboard Suite" Level="1" AllowAbsent="no">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentGroupRef Id="AgentFiles" />
+      <ComponentRef Id="Shortcuts" />
+    </Feature>
+
+    <!-- Cerrar la app y el agente antes de actualizar/desinstalar para no bloquear archivos -->
+    <util:CloseApplication Id="CloseAgent" Target="MagicKeyboardAgent.exe"
+                           CloseMessage="no" TerminateProcess="0" Timeout="1" RebootPrompt="no" />
+    <util:CloseApplication Id="CloseApp" Target="MagicKeyboardSuite.exe"
+                           CloseMessage="yes" TerminateProcess="0" Timeout="2" RebootPrompt="no" />
+
+    <!-- Abrir el agente y la app al terminar una instalación interactiva (no en desinstalación ni en modo silencioso) -->
+    <CustomAction Id="LaunchAgent" Directory="INSTALLFOLDER"
+                  ExeCommand="&quot;[INSTALLFOLDER]MagicKeyboardAgent.exe&quot;"
+                  Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
+    <CustomAction Id="LaunchApp" Directory="APPFOLDER"
+                  ExeCommand="&quot;[APPFOLDER]MagicKeyboardSuite.exe&quot;"
+                  Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
+    <InstallExecuteSequence>
+      <Custom Action="LaunchAgent" After="InstallFinalize" Condition="NOT Installed AND NOT (REMOVE~=&quot;ALL&quot;) AND UILevel &gt; 3" />
+      <Custom Action="LaunchApp" After="LaunchAgent" Condition="NOT Installed AND NOT (REMOVE~=&quot;ALL&quot;) AND UILevel &gt; 3" />
+    </InstallExecuteSequence>
+  </Package>
+
+  <!-- App WinUI 3 publicada (dotnet publish, autocontenida) -->
+  <Fragment>
+    <ComponentGroup Id="AppFiles" Directory="APPFOLDER">
+      <Files Include="$(AppPublishDir)\**">
+        <Exclude Files="$(AppPublishDir)\**\*.pdb" />
+      </Files>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- Agente en segundo plano + inicio automático respetando preferencia HKCU con --autostart -->
+  <Fragment>
+    <ComponentGroup Id="AgentFiles" Directory="INSTALLFOLDER">
+      <Component Id="Agent" Bitness="always64">
+        <File Id="MagicKeyboardAgent.exe" Source="$(AgentDir)\MagicKeyboardAgent.exe" KeyPath="yes" />
+        <File Id="MagicKeyboardAgent.exe.config" Source="$(AgentDir)\MagicKeyboardAgent.exe.config" />
+        <RegistryValue Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+                       Name="MagicKeyboardSuite" Type="string"
+                       Value="&quot;[#MagicKeyboardAgent.exe]&quot; --autostart" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- Accesos directos -->
+  <Fragment>
+    <Component Id="Shortcuts" Directory="INSTALLFOLDER" Guid="{4B7E2C19-6D3A-4F0E-9C51-2A8D7E6B1F40}" Bitness="always64">
+      <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder"
+                Name="Magic Keyboard Suite" Description="Magic Keyboard Suite"
+                Target="[APPFOLDER]MagicKeyboardSuite.exe" WorkingDirectory="APPFOLDER"
+                Icon="AppIcon.ico" />
+      <Shortcut Id="DesktopShortcut" Directory="DesktopFolder"
+                Name="Magic Keyboard Suite" Description="Magic Keyboard Suite"
+                Target="[APPFOLDER]MagicKeyboardSuite.exe" WorkingDirectory="APPFOLDER"
+                Icon="AppIcon.ico" />
+      <RegistryValue Root="HKLM" Key="SOFTWARE\MagicKeyboardSuite" Name="Shortcuts"
+                     Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+  </Fragment>
+
+</Wix>

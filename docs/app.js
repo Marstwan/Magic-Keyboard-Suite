@@ -233,8 +233,8 @@ const I18N = {
 };
 
 function setLanguage(lang) {
-  const dict = I18N[lang] || I18N.es;
-  document.documentElement.lang = lang;
+  const dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = I18N[lang] ? lang : "en";
   try { localStorage.setItem("mks_lang", lang); } catch {}
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -284,8 +284,8 @@ function initRepoLinks() {
 document.addEventListener("DOMContentLoaded", () => {
   let saved = null;
   try { saved = localStorage.getItem("mks_lang"); } catch {}
-  const browserLang = (navigator.language || "es").slice(0, 2).toLowerCase();
-  const initialLang = saved || (I18N[browserLang] ? browserLang : "es");
+  const browserLang = (navigator.language || "en").slice(0, 2).toLowerCase();
+  const initialLang = saved || (I18N[browserLang] ? browserLang : "en");
   setLanguage(initialLang);
   initRepoLinks();
 
