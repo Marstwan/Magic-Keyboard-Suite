@@ -55,6 +55,14 @@
 powershell -ExecutionPolicy Bypass -File .\windows\build.ps1
 ```
 
+### Disposicions oficials d'Apple a Windows (drivers de Boot Camp)
+
+A **macOS** les 17 disposicions ja venen integrades de sèrie. A **Windows**, el teclat, les dreceres `⌘` i l'intercanvi ISO funcionen des del primer segon amb la disposició estàndard del sistema, però per tenir **exactament la mateixa distribució impresa per Apple al 100 %** (com ara el punt volat `·` a `Majúscules + 3` o tots els símbols exactes d'`Option`) cal importar les disposicions oficials de **Boot Camp** (no es redistribueixen dins del repositori per ser programari propietari d'Apple):
+
+1. Baixa el paquet `.zip` oficial de **Boot Camp Support Software** directament des del Suport d'Apple: **[support.apple.com/106378](https://support.apple.com/106378)** *(alternativament, pots obtenir la carpeta amb l'Assistent Boot Camp en un Mac Intel o amb [Brigadier](https://github.com/timsutton/brigadier))*.
+2. **Important:** **No descomprimeixis ni executis el `setup.exe` de Boot Camp** al teu PC amb Windows (aquell instal·lador és exclusiu per a ordinadors Mac).
+3. Obre **Magic Keyboard Suite** a Windows (a la benvinguda inicial o a la pestanya *Disposició i idioma*), prem **«Triar .zip…»** i selecciona el fitxer `.zip` descarregat: l'aplicació n'extraurà només les 17 llibreries de teclat (`*A.dll`), en comprovarà la signatura digital oficial d'Apple i les instal·larà en segons.
+
 ---
 
 ## English
@@ -71,6 +79,14 @@ powershell -ExecutionPolicy Bypass -File .\windows\build.ps1
   - Instant layout switching on macOS (`Carbon TIS`) and Windows.
 - **Mac Shortcuts on Windows:** `⌘ + C/V/X/Z/A/S/F/T/W`, `⌘ + Tab` (persistent app switcher while holding `⌘`), `⌘ + Q`, `⌘ + Space`, `⌘ + Arrows` (`Home / End / Page Up / Page Down`), plus an optional **Right `Option (⌥)` as `Fn`** mode (`Delete`, navigation, and `F1–F12`), scoped exclusively to Apple hardware (`VID_05AC` / `004C`).
 - **Native SwiftUI & WinUI 3 Apps (`Català`, `English`, `Español`):** Powered by a single source of truth in [`shared/`](shared/).
+
+### Official Apple Keyboard Layouts on Windows (Boot Camp Drivers)
+
+On **macOS**, all 17 layouts are built into the OS. On **Windows**, Bluetooth handover, `⌘` shortcuts, and ISO key swapping work right out of the box using Windows' built-in layouts as a fallback, but to get **100% pixel-accurate Apple keycap mappings** you should import Apple's official **Boot Camp** keyboard layout DLLs (not bundled in this repository because they are proprietary Apple software):
+
+1. Download the official **Boot Camp Support Software** `.zip` package directly from Apple Support: **[support.apple.com/106378](https://support.apple.com/106378)** *(alternatively, fetch a Boot Camp folder via Boot Camp Assistant on an Intel Mac or [Brigadier](https://github.com/timsutton/brigadier))*.
+2. **Important:** **Do NOT unzip or run Boot Camp's `setup.exe`** on a standard Windows PC (that full installer is meant only for Mac hardware).
+3. Open **Magic Keyboard Suite** on Windows (during initial onboarding or in the *Layout & language* tab), click **“Select .zip…”**, and pick the downloaded `.zip` file: the app automatically extracts only the 17 keyboard layout files (`*A.dll`), verifies Apple's Authenticode signature, and registers them in seconds.
 
 ---
 
@@ -90,6 +106,14 @@ powershell -ExecutionPolicy Bypass -File .\windows\build.ps1
 - **Diseño nativo unificado y multiidioma (`Català`, `English`, `Español`):**
   - **macOS:** Swift + SwiftUI nativo (`macOS 13+`).
   - **Windows 11:** C# + WinUI 3 (.NET 8) + Agente en bandeja del sistema + Instalador `.msi` (WiX v5).
+
+### Disposiciones oficiales de Apple en Windows (drivers de Boot Camp)
+
+En **macOS** las 17 disposiciones ya vienen incluidas de serie. En **Windows**, el teclado, los atajos `⌘` y el intercambio ISO funcionan desde el primer segundo usando las disposiciones estándar de Windows como respaldo, pero para tener **exactamente el 100 % de la serigrafía oficial de Apple** (por ejemplo `·` en `Mayús + 3` y todos los caracteres terciarios exactos) conviene importar las disposiciones oficiales de **Boot Camp** (no se redistribuyen en el repositorio por ser software propietario de Apple):
+
+1. Descarga el paquete `.zip` oficial de **Boot Camp Support Software** directamente desde la web de Soporte de Apple: **[support.apple.com/106378](https://support.apple.com/106378)** *(también puedes obtener la carpeta desde el Asistente Boot Camp en un Mac Intel o con [Brigadier](https://github.com/timsutton/brigadier))*.
+2. **Importante:** **No descomprimas ni ejecutes el `setup.exe` de Boot Camp** en un PC normal con Windows (ese instalador completo es solo para ordenadores Mac).
+3. Abre **Magic Keyboard Suite** en Windows (en la pantalla de bienvenida o en la pestaña *Disposición e idioma*), pulsa **«Elegir .zip…»** y selecciona directamente el `.zip` descargado: la aplicación extraerá únicamente las 17 librerías de teclado (`*A.dll`), verificará la firma digital oficial de Apple y las instalará en segundos.
 
 ---
 
