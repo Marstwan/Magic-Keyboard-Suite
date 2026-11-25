@@ -47,10 +47,12 @@ class GenerateSharedResourcesTests(unittest.TestCase):
         root = ET.fromstring(xaml_text)
         self.assertTrue(root.tag.endswith("ResourceDictionary"))
 
-    def test_winui3_xaml_files_are_well_formed_xml(self):
-        for xaml_path in (ROOT / "windows" / "WinUI3App").rglob("*.xaml"):
-            with self.subTest(xaml=str(xaml_path.relative_to(ROOT))):
-                ET.parse(xaml_path)
+    def test_windows_xml_and_xaml_files_are_well_formed_xml(self):
+        patterns = ("*.xaml", "*.wxs", "*.csproj", "*.wixproj", "*.manifest")
+        for pattern in patterns:
+            for xml_path in (ROOT / "windows").rglob(pattern):
+                with self.subTest(xml=str(xml_path.relative_to(ROOT))):
+                    ET.parse(xml_path)
 
     def test_fallback_language_is_english(self):
         self.assertEqual(generate.FALLBACK_LANG, "en")

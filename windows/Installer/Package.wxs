@@ -83,7 +83,7 @@
     </ComponentGroup>
   </Fragment>
 
-  <!-- Agente en segundo plano + inicio automático respetando preferencia HKCU con --autostart -->
+  <!-- Agente en segundo plano + inicio automático respetando la preferencia de usuario en HKCU -->
   <Fragment>
     <ComponentGroup Id="AgentFiles" Directory="INSTALLFOLDER">
       <Component Id="Agent" Bitness="always64">
