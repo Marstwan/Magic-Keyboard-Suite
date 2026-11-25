@@ -32,7 +32,7 @@ jobs:
           mkdir -p docs/assets
           cp shared/assets/icon-1024.png docs/assets/icon.png
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: 'docs'
       - id: deployment
