@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Archivo generado por shared/tools/generate.py. NO EDITAR: cambia shared/ y vuelve a generar. -->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="MKSStateConnectedColor">#FF0F7B0F</Color>
+            <SolidColorBrush x:Key="MKSStateConnectedBrush" Color="#FF0F7B0F" />
+            <SolidColorBrush x:Key="MKSStateConnectedFillBrush" Color="#240F7B0F" />
+            <Color x:Key="MKSStatePairedColor">#FF9D5D00</Color>
+            <SolidColorBrush x:Key="MKSStatePairedBrush" Color="#FF9D5D00" />
+            <SolidColorBrush x:Key="MKSStatePairedFillBrush" Color="#249D5D00" />
+            <Color x:Key="MKSStateReleasedColor">#FF7A3FC4</Color>
+            <SolidColorBrush x:Key="MKSStateReleasedBrush" Color="#FF7A3FC4" />
+            <SolidColorBrush x:Key="MKSStateReleasedFillBrush" Color="#247A3FC4" />
+            <Color x:Key="MKSStateNearbyColor">#FF005FB8</Color>
+            <SolidColorBrush x:Key="MKSStateNearbyBrush" Color="#FF005FB8" />
+            <SolidColorBrush x:Key="MKSStateNearbyFillBrush" Color="#24005FB8" />
+            <Color x:Key="MKSStateErrorColor">#FFC42B1C</Color>
+            <SolidColorBrush x:Key="MKSStateErrorBrush" Color="#FFC42B1C" />
+            <SolidColorBrush x:Key="MKSStateErrorFillBrush" Color="#24C42B1C" />
+            <Color x:Key="MKSCardBackgroundColor">#B3FFFFFF</Color>
+            <SolidColorBrush x:Key="MKSCardBackgroundBrush" Color="#B3FFFFFF" />
+            <Color x:Key="MKSCardStrokeColor">#0F000000</Color>
+            <SolidColorBrush x:Key="MKSCardStrokeBrush" Color="#0F000000" />
+            <Color x:Key="MKSIconTileColor">#0A000000</Color>
+            <SolidColorBrush x:Key="MKSIconTileBrush" Color="#0A000000" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="MKSStateConnectedColor">#FF6CCB5F</Color>
+            <SolidColorBrush x:Key="MKSStateConnectedBrush" Color="#FF6CCB5F" />
+            <SolidColorBrush x:Key="MKSStateConnectedFillBrush" Color="#246CCB5F" />
+            <Color x:Key="MKSStatePairedColor">#FFFCE100</Color>
+            <SolidColorBrush x:Key="MKSStatePairedBrush" Color="#FFFCE100" />
+            <SolidColorBrush x:Key="MKSStatePairedFillBrush" Color="#24FCE100" />
+            <Color x:Key="MKSStateReleasedColor">#FFC29BFF</Color>
+            <SolidColorBrush x:Key="MKSStateReleasedBrush" Color="#FFC29BFF" />
+            <SolidColorBrush x:Key="MKSStateReleasedFillBrush" Color="#24C29BFF" />
+            <Color x:Key="MKSStateNearbyColor">#FF60CDFF</Color>
+            <SolidColorBrush x:Key="MKSStateNearbyBrush" Color="#FF60CDFF" />
+            <SolidColorBrush x:Key="MKSStateNearbyFillBrush" Color="#2460CDFF" />
+            <Color x:Key="MKSStateErrorColor">#FFFF99A4</Color>
+            <SolidColorBrush x:Key="MKSStateErrorBrush" Color="#FFFF99A4" />
+            <SolidColorBrush x:Key="MKSStateErrorFillBrush" Color="#24FF99A4" />
+            <Color x:Key="MKSCardBackgroundColor">#0DFFFFFF</Color>
+            <SolidColorBrush x:Key="MKSCardBackgroundBrush" Color="#0DFFFFFF" />
+            <Color x:Key="MKSCardStrokeColor">#1A000000</Color>
+            <SolidColorBrush x:Key="MKSCardStrokeBrush" Color="#1A000000" />
+            <Color x:Key="MKSIconTileColor">#0FFFFFFF</Color>
+            <SolidColorBrush x:Key="MKSIconTileBrush" Color="#0FFFFFFF" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <Color x:Key="MKSStateConnectedColor">#FF6CCB5F</Color>
+            <SolidColorBrush x:Key="MKSStateConnectedBrush" Color="#FF6CCB5F" />
+            <SolidColorBrush x:Key="MKSStateConnectedFillBrush" Color="#246CCB5F" />
+            <Color x:Key="MKSStatePairedColor">#FFFCE100</Color>
+            <SolidColorBrush x:Key="MKSStatePairedBrush" Color="#FFFCE100" />
+            <SolidColorBrush x:Key="MKSStatePairedFillBrush" Color="#24FCE100" />
+            <Color x:Key="MKSStateReleasedColor">#FFC29BFF</Color>
+            <SolidColorBrush x:Key="MKSStateReleasedBrush" Color="#FFC29BFF" />
+            <SolidColorBrush x:Key="MKSStateReleasedFillBrush" Color="#24C29BFF" />
+            <Color x:Key="MKSStateNearbyColor">#FF60CDFF</Color>
+            <SolidColorBrush x:Key="MKSStateNearbyBrush" Color="#FF60CDFF" />
+            <SolidColorBrush x:Key="MKSStateNearbyFillBrush" Color="#2460CDFF" />
+            <Color x:Key="MKSStateErrorColor">#FFFF99A4</Color>
+            <SolidColorBrush x:Key="MKSStateErrorBrush" Color="#FFFF99A4" />
+            <SolidColorBrush x:Key="MKSStateErrorFillBrush" Color="#24FF99A4" />
+            <Color x:Key="MKSCardBackgroundColor">#0DFFFFFF</Color>
+            <SolidColorBrush x:Key="MKSCardBackgroundBrush" Color="#0DFFFFFF" />
+            <Color x:Key="MKSCardStrokeColor">#1A000000</Color>
+            <SolidColorBrush x:Key="MKSCardStrokeBrush" Color="#1A000000" />
+            <Color x:Key="MKSIconTileColor">#0FFFFFFF</Color>
+            <SolidColorBrush x:Key="MKSIconTileBrush" Color="#0FFFFFFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <CornerRadius x:Key="MKSCardCornerRadius">8</CornerRadius>
+    <CornerRadius x:Key="MKSControlCornerRadius">4</CornerRadius>
+    <CornerRadius x:Key="MKSBadgeCornerRadius">4</CornerRadius>
+    <CornerRadius x:Key="MKSIconTileCornerRadius">8</CornerRadius>
+    <x:Double x:Key="MKSSpacingXs">4</x:Double>
+    <x:Double x:Key="MKSSpacingS">8</x:Double>
+    <x:Double x:Key="MKSSpacingM">12</x:Double>
+    <x:Double x:Key="MKSSpacingL">16</x:Double>
+    <x:Double x:Key="MKSSpacingXl">24</x:Double>
+    <x:Double x:Key="MKSSpacingCardPaddingH">20</x:Double>
+    <x:Double x:Key="MKSSpacingCardPaddingV">16</x:Double>
+    <x:Double x:Key="MKSSpacingPagePaddingH">36</x:Double>
+    <x:Double x:Key="MKSSpacingPagePaddingV">24</x:Double>
+    <Thickness x:Key="MKSCardPadding">20,16,20,16</Thickness>
+    <Thickness x:Key="MKSPagePadding">36,24,36,24</Thickness>
+    <x:Double x:Key="MKSSizeIconTile">44</x:Double>
+    <x:Double x:Key="MKSSizeCardIcon">20</x:Double>
+    <x:Double x:Key="MKSSizeTileIcon">20</x:Double>
+    <x:Double x:Key="MKSSizeStatusDot">8</x:Double>
+    <x:Double x:Key="MKSSizeSidebarWidth">268</x:Double>
+    <x:Double x:Key="MKSSizeContentMaxWidth">920</x:Double>
+    <x:Double x:Key="MKSSizeWindowMinWidth">980</x:Double>
+    <x:Double x:Key="MKSSizeWindowMinHeight">660</x:Double>
+    <x:Double x:Key="MKSSizeComboWidth">280</x:Double>
+
+    <Style x:Key="MKSPageTitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSPageSubtitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSSectionTitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSCardTitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSCardBodyTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSDeviceNameTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSBadgeTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSCaptionTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="MKSButtonTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- Glifos Segoe Fluent Icons (mismo concepto que los SF Symbols de macOS) -->
+    <x:String x:Key="MKSIconNavBluetooth">&#xE702;</x:String>
+    <x:String x:Key="MKSIconNavLayout">&#xE765;</x:String>
+    <x:String x:Key="MKSIconNavShortcuts">&#xE7FC;</x:String>
+    <x:String x:Key="MKSIconNavGuide">&#xE946;</x:String>
+    <x:String x:Key="MKSIconKeyboard">&#xE765;</x:String>
+    <x:String x:Key="MKSIconRefresh">&#xE72C;</x:String>
+    <x:String x:Key="MKSIconScan">&#xE721;</x:String>
+    <x:String x:Key="MKSIconConnect">&#xE71B;</x:String>
+    <x:String x:Key="MKSIconRelease">&#xE8A7;</x:String>
+    <x:String x:Key="MKSIconDisconnect">&#xE8CD;</x:String>
+    <x:String x:Key="MKSIconFilter">&#xE71C;</x:String>
+    <x:String x:Key="MKSIconGlobe">&#xE774;</x:String>
+    <x:String x:Key="MKSIconSwap">&#xE8AB;</x:String>
+    <x:String x:Key="MKSIconOption">&#xE765;</x:String>
+    <x:String x:Key="MKSIconMemory">&#xE7B8;</x:String>
+    <x:String x:Key="MKSIconCommand">&#xE7FC;</x:String>
+    <x:String x:Key="MKSIconDelete">&#xE750;</x:String>
+    <x:String x:Key="MKSIconMedia">&#xE767;</x:String>
+    <x:String x:Key="MKSIconInfo">&#xE946;</x:String>
+    <x:String x:Key="MKSIconSuccess">&#xE73E;</x:String>
+    <x:String x:Key="MKSIconUninstall">&#xE74D;</x:String>
+    <x:String x:Key="MKSIconSettings">&#xE713;</x:String>
+    <x:String x:Key="MKSIconQuit">&#xE7E8;</x:String>
+    <x:String x:Key="MKSIconBatteryFull">&#xE83F;</x:String>
+    <x:String x:Key="MKSIconBatteryMid">&#xE855;</x:String>
+    <x:String x:Key="MKSIconBatteryLow">&#xE852;</x:String>
+</ResourceDictionary>

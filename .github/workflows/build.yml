@@ -1,0 +1,75 @@
+name: Build & Release Magic Keyboard Suite (macOS + Windows)
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify-shared:
+    name: Verificar tokens y textos compartidos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Comprobar que los recursos generados están al día
+        run: python3 MagicKeyboardSuite/shared/tools/generate.py --check
+
+  build-macos:
+    name: Compilar macOS (SwiftUI .app + .dmg)
+    needs: verify-shared
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compilar y crear DMG
+        run: ./MagicKeyboardSuite/macOS/build.sh --dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MagicKeyboardSuite-macOS-dmg
+          path: MagicKeyboardSuite/macOS/MagicKeyboardSuite-macOS.dmg
+
+  build-windows:
+    name: Compilar Windows 11 (WinUI 3 + Agente + Instalador .msi)
+    needs: verify-shared
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Compilar y generar MSI (WiX Toolset v5)
+        shell: pwsh
+        run: ./MagicKeyboardSuite/Windows/build.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MagicKeyboardSuite-Windows-msi
+          path: MagicKeyboardSuite/Windows/MagicKeyboardSuite-Setup.msi
+
+  release:
+    name: Publicar GitHub Release
+    needs: [ build-macos, build-windows ]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Generar SHA256SUMS.txt
+        working-directory: dist
+        run: sha256sum MagicKeyboardSuite-macOS.dmg MagicKeyboardSuite-Setup.msi > SHA256SUMS.txt
+      - name: Crear Release en GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/MagicKeyboardSuite-macOS.dmg
+            dist/MagicKeyboardSuite-Setup.msi
+            dist/SHA256SUMS.txt

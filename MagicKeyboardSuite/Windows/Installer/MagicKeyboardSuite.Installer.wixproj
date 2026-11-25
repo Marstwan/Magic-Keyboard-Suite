@@ -1,0 +1,23 @@
+<Project Sdk="WixToolset.Sdk/5.0.2">
+  <PropertyGroup>
+    <OutputName>MagicKeyboardSuite-Setup</OutputName>
+    <InstallerPlatform>x64</InstallerPlatform>
+
+    <ProductVersion Condition="'$(ProductVersion)' == ''">3.1.0</ProductVersion>
+    <ArtifactsDir Condition="'$(ArtifactsDir)' == ''">$(MSBuildProjectDirectory)\..\artifacts</ArtifactsDir>
+    <AppPublishDir Condition="'$(AppPublishDir)' == ''">$(ArtifactsDir)\app</AppPublishDir>
+    <AgentDir Condition="'$(AgentDir)' == ''">$(ArtifactsDir)\agent</AgentDir>
+    <WindowsDir>$(MSBuildProjectDirectory)\..</WindowsDir>
+
+    <DefineConstants>ProductVersion=$(ProductVersion);AppPublishDir=$(AppPublishDir);AgentDir=$(AgentDir);WindowsDir=$(WindowsDir)</DefineConstants>
+
+    <!-- ICE03/ICE60 fallan con DLLs multilingües del runtime de Windows App SDK y .NET 8 (más de 20 LCIDs en la cabecera PE).
+         ICE38/43/57/64/91 son habituales con accesos directos per-machine y archivos permanentes. -->
+    <SuppressIces>ICE03;ICE38;ICE43;ICE57;ICE60;ICE64;ICE91</SuppressIces>
+    <NoWarn>$(NoWarn);WIX1076;WIX1077</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Util.wixext" Version="5.0.2" />
+  </ItemGroup>
+</Project>

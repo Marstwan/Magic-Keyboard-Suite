@@ -1,0 +1,19 @@
+{
+  "$comment": "Ajustes compartidos. Mismas claves y valores por defecto en macOS (UserDefaults, dominio com.magickeyboardsuite) y Windows (HKCU\\Software\\MagicKeyboardSuite). platforms indica dónde se usa cada ajuste.",
+  "settings": {
+    "DeviceFilter":           { "type": "string", "default": "apple", "values": ["apple", "keyboards", "all"], "platforms": ["mac", "win"] },
+    "RememberReleased":       { "type": "bool",   "default": true,  "platforms": ["mac", "win"] },
+    "ModifierMode":           { "type": "int",    "default": 0, "comment": "win: 0 Mac, 1 intercambio, 2 Windows", "platforms": ["win"] },
+    "SwapIsoKeys":            { "type": "bool",   "default": true,  "platforms": ["win"] },
+    "LeftOptionAsAltGr":      { "type": "bool",   "default": true,  "platforms": ["win"] },
+    "OnlyAppleHardware":      { "type": "bool",   "default": true,  "platforms": ["win"] },
+    "MacNavigationShortcuts": { "type": "bool",   "default": true,  "platforms": ["win"] },
+    "MediaKeysDefault":       { "type": "bool",   "default": true,  "platforms": ["win"] },
+    "RightOptionAsFn":        { "type": "bool",   "default": false, "comment": "win: usa Option derecho (AltGr) como tecla Fn porque Windows bloquea la Fn física en modo usuario", "platforms": ["win"] },
+    "PreferredKlid":          { "type": "string", "default": "",    "platforms": ["win"] },
+    "LayoutAutoConfigured":   { "type": "bool",   "default": false, "comment": "win: el agente asigna la disposición de Apple al idioma del usuario en el primer arranque", "platforms": ["win"] },
+    "LaunchAtLogin":          { "type": "bool",   "default": true,  "platforms": ["mac", "win"] },
+    "HasSeenOnboarding":      { "type": "bool",   "default": false, "comment": "indica si ya se ha mostrado el asistente de bienvenida del primer inicio", "platforms": ["mac", "win"] },
+    "AppLanguage":            { "type": "string", "default": "auto", "values": ["auto", "ca", "es", "en"], "platforms": ["mac", "win"] }
+  }
+}
