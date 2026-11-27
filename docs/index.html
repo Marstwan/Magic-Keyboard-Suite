@@ -1,418 +1,245 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Magic Keyboard Suite — macOS &amp; Windows 11</title>
-  <meta name="description" content="Utilidad nativa multiplataforma para usar tu Apple Magic Keyboard por Bluetooth o cable USB de forma idéntica en macOS y Windows 11." />
+  <meta name="description" content="Cross-platform native utility for Apple Magic Keyboards on macOS and Windows 11. Switch computers effortlessly with identical layouts, Option symbols, and Command shortcuts." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- Barra de navegación -->
+  <!-- Spatial ambient background -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Navbar -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#" class="brand">
         <img src="assets/icon.png" onerror="this.onerror=null;this.src='../shared/assets/icon-1024.png';" alt="Magic Keyboard Suite" />
-        <span>Magic Keyboard Suite</span>
+        <span class="brand-name">Magic Keyboard Suite</span>
         <span class="version-pill">v1.0.0</span>
       </a>
 
-      <nav class="nav-links">
-        <a href="#preview" data-i18n="nav.preview">Interfaz</a>
-        <a href="#features" data-i18n="nav.features">Características</a>
-        <a href="#download" data-i18n="nav.download">Descarga y compilación</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#download" data-i18n="nav.download">Download</a>
       </nav>
 
-      <div class="nav-actions">
-        <div class="lang-switcher" role="group" aria-label="Language switcher">
-          <button type="button" class="lang-btn active" data-lang="es">ES</button>
-          <button type="button" class="lang-btn" data-lang="ca">CA</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
+      <div class="lang-switcher" role="group" aria-label="Language switcher">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="ca">CA</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge" data-i18n="hero.badge">
-        Open Source (GPLv3) • Bluetooth y cable USB • macOS + Windows 11
-      </div>
-      <h1 data-i18n="hero.title">
-        Tu Apple Magic Keyboard, idéntico en macOS y en Windows 11
-      </h1>
-      <p data-i18n="hero.subtitle">
-        Úsalo por Bluetooth o conectado por cable USB (Lightning / USB-C). Pasa el teclado de un equipo a otro en un clic, consulta su batería en tiempo real y mantén exactamente los mismos símbolos con Option (⌥), teclas ISO y atajos con Command (⌘).
-      </p>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-eyebrow" data-i18n="hero.eyebrow">Open Source · macOS 13+ &amp; Windows 10/11</div>
+        <h1 data-i18n="hero.title">Your Apple Magic Keyboard, identical on macOS and Windows</h1>
+        <p class="hero-sub" data-i18n="hero.subtitle">
+          Switch between Mac and PC over Bluetooth or USB with live battery levels, exact Apple keycaps, Option (⌥) symbols, and Command (⌘) shortcuts.
+        </p>
 
-      <div class="cta-row">
-        <a id="download-mac" href="#" class="btn btn-primary">
-          <span data-i18n="cta.mac">Descargar para macOS</span>
-          <span class="btn-sub" data-i18n="cta.macSub">.dmg • GitHub Releases</span>
-        </a>
+        <div class="cta-row">
+          <a id="download-mac" href="#" class="btn btn-primary">
+            <span data-i18n="cta.mac">Download for macOS</span>
+            <span class="btn-meta">.dmg</span>
+          </a>
+          <a id="download-win" href="#" class="btn">
+            <span data-i18n="cta.win">Download for Windows</span>
+            <span class="btn-meta">.msi</span>
+          </a>
+        </div>
 
-        <a id="download-win" href="#" class="btn">
-          <span data-i18n="cta.win">Descargar para Windows 11</span>
-          <span class="btn-sub" data-i18n="cta.winSub">.msi • GitHub Releases</span>
-        </a>
-
-        <a id="view-github" href="#" class="btn" target="_blank" rel="noopener">
-          <span data-i18n="cta.source">Ver código en GitHub</span>
+        <a id="view-github" href="#" class="hero-meta-link" target="_blank" rel="noopener">
+          <span data-i18n="cta.source">View source on GitHub →</span>
         </a>
       </div>
+    </section>
+
+    <!-- Real App Screenshot Showcase -->
+    <section class="preview-section" aria-label="Application preview">
+      <div class="container">
+        <div class="stage-3d">
+          <button type="button" id="screenshot-trigger" class="screenshot-frame" aria-label="Enlarge screenshot">
+            <img
+              id="app-screenshot"
+              src="assets/screenshot-en.png"
+              alt="Magic Keyboard Suite interface"
+              width="1024"
+              height="601"
+              decoding="async"
+            />
+            <span class="screenshot-hint" data-i18n="preview.zoomHint">Click to enlarge</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox for full-size screenshot on mobile & desktop -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
+      <img id="lightbox-img" src="assets/screenshot-en.png" alt="Magic Keyboard Suite interface" />
     </div>
-  </section>
 
-  <!-- Previsualización interactiva de Windows 11 (sin emoticonos ni selector de SO) -->
-  <section id="preview" class="preview-section">
-    <div class="container">
-      <div id="sim-window" class="app-window win-mode">
-        <div class="window-titlebar">
-          <div class="win-title-left">
-            <img src="assets/icon.png" onerror="this.onerror=null;this.src='../shared/assets/icon-1024.png';" alt="" class="win-title-icon" />
-            <span class="window-title">Magic Keyboard Suite</span>
-            <span class="version-pill" data-i18n="sim.version">Versión 1.0.0</span>
+    <!-- How it works (3 simple steps) -->
+    <section id="how" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="how.title">Switch computers in seconds</h2>
+          <p data-i18n="how.sub">Magic Keyboard stores one active Bluetooth pairing at a time. Magic Keyboard Suite makes moving effortless.</p>
+        </div>
+
+        <div class="steps-grid stagger-group">
+          <div class="glass-card stagger-item">
+            <span class="step-num">1</span>
+            <h3 data-i18n="how.s1Title">Release</h3>
+            <p data-i18n="how.s1Body">Click “Release” on your current computer. The app disconnects, forgets the pairing, and remembers your keyboard.</p>
           </div>
-          <div class="win-controls">
-            <span>─</span>
-            <span>□</span>
-            <span>✕</span>
+
+          <div class="glass-card stagger-item">
+            <span class="step-num">2</span>
+            <h3 data-i18n="how.s2Title">Toggle switch</h3>
+            <p data-i18n="how.s2Body">Turn the keyboard's physical power switch off for 2 seconds and turn it back on.</p>
+          </div>
+
+          <div class="glass-card stagger-item">
+            <span class="step-num">3</span>
+            <h3 data-i18n="how.s3Title">Connect</h3>
+            <p data-i18n="how.s3Body">Click “Connect” on your other computer from the main window, macOS menu bar, or Windows system tray.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features (4 clean cards) -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="feat.title">Built for Mac &amp; Windows workflows</h2>
+          <p data-i18n="feat.sub">Everything you need, nothing you don't — scoped exclusively to Apple hardware.</p>
+        </div>
+
+        <div class="features-grid stagger-group">
+          <article class="glass-card stagger-item">
+            <span class="card-label" data-i18n="feat.1.tag">Connectivity</span>
+            <h3 data-i18n="feat.1.title">Bluetooth, USB &amp; live battery</h3>
+            <p data-i18n="feat.1.body">Works wirelessly or over Lightning / USB-C, with real-time battery percentage in the app, macOS menu bar, and Windows tray.</p>
+          </article>
+
+          <article class="glass-card stagger-item">
+            <span class="card-label" data-i18n="feat.2.tag">Layouts</span>
+            <h3 data-i18n="feat.2.title">17 Apple layouts &amp; ISO fix</h3>
+            <p data-i18n="feat.2.body">Swaps the physical ISO keys on Windows automatically and imports Apple's 17 official Boot Camp layouts with Authenticode verification.</p>
+          </article>
+
+          <article class="glass-card stagger-item">
+            <span class="card-label" data-i18n="feat.3.tag">Shortcuts</span>
+            <h3 data-i18n="feat.3.title">Mac shortcuts, Option symbols &amp; media</h3>
+            <p data-i18n="feat.3.body">3 modifier modes, Left Option (⌥) for @ # € [ ] { } \ | ~, word navigation, media keys, and optional Right Option as Fn on Windows.</p>
+          </article>
+
+          <article class="glass-card stagger-item">
+            <span class="card-label" data-i18n="feat.4.tag">Native</span>
+            <h3 data-i18n="feat.4.title">SwiftUI &amp; WinUI 3 · EN, CA &amp; ES</h3>
+            <p data-i18n="feat.4.body">Two lightweight native apps built from a single shared design source, with live language switching and open-at-login support.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download & Boot Camp -->
+    <section id="download" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="dl.title">Download</h2>
+          <p data-i18n="dl.sub">Ready-to-use installers from GitHub Releases, free and open source under GPLv3.</p>
+        </div>
+
+        <div class="download-grid stagger-group">
+          <div class="glass-card stagger-item">
+            <span class="card-label">macOS 13+</span>
+            <h3 data-i18n="dl.macTitle">macOS Disk Image (.dmg)</h3>
+            <p data-i18n="dl.macBody">Native SwiftUI app with menu bar quick controls. Drag into Applications and you're ready.</p>
+            <div class="card-cta">
+              <a id="release-mac-btn" href="#" class="btn btn-primary" data-i18n="dl.macBtn">Download .dmg</a>
+            </div>
+          </div>
+
+          <div class="glass-card stagger-item">
+            <span class="card-label">Windows 10 / 11 (x64)</span>
+            <h3 data-i18n="dl.winTitle">Windows Installer (.msi)</h3>
+            <p data-i18n="dl.winBody">Installs the WinUI 3 app, lightweight background tray agent, and optional launch at login.</p>
+            <div class="card-cta">
+              <a id="release-win-btn" href="#" class="btn btn-primary" data-i18n="dl.winBtn">Download .msi</a>
+            </div>
           </div>
         </div>
 
-        <div class="window-body">
-          <!-- Barra lateral sin emoticonos -->
-          <aside class="sim-sidebar">
-            <div class="sim-nav-list">
-              <button type="button" class="sim-nav-btn active" data-tab="bt">
-                <span data-i18n="sim.tabBt">Teclados Bluetooth</span>
-              </button>
-              <button type="button" class="sim-nav-btn" data-tab="layout">
-                <span data-i18n="sim.tabLayout">Disposición e idioma</span>
-              </button>
-              <button type="button" class="sim-nav-btn" data-tab="shortcuts">
-                <span data-i18n="sim.tabShortcuts">Atajos y multimedia</span>
-              </button>
-              <button type="button" class="sim-nav-btn" data-tab="guide">
-                <span data-i18n="sim.tabGuide">Guía Windows ↔ Mac</span>
-              </button>
-            </div>
-
-            <div class="sim-footer-card">
-              <div class="sim-footer-status">
-                <span class="status-dot"></span>
-                <span data-i18n="sim.engine">Motor activo</span>
-              </div>
-              <div class="sim-footer-sub" data-i18n="sim.currentLayout">
-                Disposición: Español / Català (Apple)
-              </div>
-            </div>
-          </aside>
-
-          <!-- Contenido principal simulado -->
-          <main class="sim-content">
-            <!-- Pestaña 1: Bluetooth y USB -->
-            <div id="sim-page-bt" class="sim-page active">
-              <div class="sim-header">
-                <h3 data-i18n="sim.btTitle">Teclados Bluetooth</h3>
-                <p data-i18n="sim.btSub">Conecta tu teclado a este PC por Bluetooth o cable USB, o libéralo para usarlo en el Mac</p>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">KB</div>
-                  <div>
-                    <div class="sim-card-title">
-                      <span>Magic Keyboard with Touch ID</span>
-                      <span class="badge badge-green" data-i18n="sim.stateConnected">Conectado a este PC</span>
-                      <span class="badge badge-green">94%</span>
-                    </div>
-                    <div class="sim-card-sub">MAC A4-83-E7-21-9C-0B  •  Teclado Apple</div>
-                  </div>
-                </div>
-                <span class="sim-action-btn" data-i18n="sim.btnRelease">Liberar para el Mac</span>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">USB</div>
-                  <div>
-                    <div class="sim-card-title">
-                      <span>Magic Keyboard</span>
-                      <span class="badge badge-green" data-i18n="sim.stateConnected">Conectado a este PC</span>
-                    </div>
-                    <div class="sim-card-sub" data-i18n="sim.usbSub">USB  •  Teclado Apple</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">BT</div>
-                  <div>
-                    <div class="sim-card-title">
-                      <span>Magic Keyboard (A1644)</span>
-                      <span class="badge badge-purple" data-i18n="sim.stateReleased">Liberado para el Mac</span>
-                    </div>
-                    <div class="sim-card-sub">MAC 70-56-81-AA-12-4F  •  Teclado Apple</div>
-                  </div>
-                </div>
-                <span class="sim-action-btn green" data-i18n="sim.btnConnect">Conectar en este PC</span>
-              </div>
-            </div>
-
-            <!-- Pestaña 2: Disposición e idioma -->
-            <div id="sim-page-layout" class="sim-page">
-              <div class="sim-header">
-                <h3 data-i18n="sim.layoutTitle">Disposición e idioma</h3>
-                <p data-i18n="sim.layoutSub">Disposición oficial de Apple (Boot Camp) y selector de idioma en vivo (Català, Español, English)</p>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">DRV</div>
-                  <div>
-                    <div class="sim-card-title">
-                      <span data-i18n="sim.driversTitle">Drivers oficiales de Apple (Boot Camp)</span>
-                      <span class="badge badge-green" data-i18n="sim.driversBadge">Instalados</span>
-                    </div>
-                    <div class="sim-card-sub" data-i18n="sim.driversSub">17 disposiciones oficiales de Apple listas para usar</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">.zip / BootCamp.msi</span>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">ISO</div>
-                  <div>
-                    <div class="sim-card-title" data-i18n="sim.activeLayoutTitle">Disposición de Apple</div>
-                    <div class="sim-card-sub" data-i18n="sim.activeLayoutSub">Cambia al instante entre las 17 disposiciones oficiales de Apple</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">Español / Català (Apple) ▾</span>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">UI</div>
-                  <div>
-                    <div class="sim-card-title" data-i18n="sim.appLangTitle">Idioma de la aplicación</div>
-                    <div class="sim-card-sub" data-i18n="sim.appLangSub">Cambia en vivo entre Català, Español e English</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">Català / Español / English ▾</span>
-              </div>
-            </div>
-
-            <!-- Pestaña 3: Atajos y multimedia -->
-            <div id="sim-page-shortcuts" class="sim-page">
-              <div class="sim-header">
-                <h3 data-i18n="sim.shortcutsTitle">Atajos y multimedia</h3>
-                <p data-i18n="sim.shortcutsSub">Command (⌘), Supr, Inicio/Fin y teclas de función F1–F12</p>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">CMD</div>
-                  <div>
-                    <div class="sim-card-title" data-i18n="sim.cmdTitle">Command (⌘) y Control (⌃)</div>
-                    <div class="sim-card-sub" data-i18n="sim.cmdSub">⌘+C/V/X/Z/A/S/F/T/W, ⌘+Tab, ⌘+Q y ⌘+Espacio</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">Modo Mac ▾</span>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">DEL</div>
-                  <div>
-                    <div class="sim-card-title" data-i18n="sim.navTitle">Supr y navegación con ⌘ + flechas</div>
-                    <div class="sim-card-sub" data-i18n="sim.navSub">Fn + Retroceso = Supr  •  ⌘ + ←/→ = Inicio/Fin  •  ⌘ + ↑/↓ = RePág/AvPág</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">Activado</span>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">FN</div>
-                  <div>
-                    <div class="sim-card-title" data-i18n="sim.mediaTitle">Teclas de función (F1–F12) y controles multimedia</div>
-                    <div class="sim-card-sub" data-i18n="sim.mediaSub">F7–F12 actúan como controles multimedia y con Fn como F1–F12</div>
-                  </div>
-                </div>
-                <span class="badge badge-green">Activado</span>
-              </div>
-            </div>
-
-            <!-- Pestaña 4: Guía -->
-            <div id="sim-page-guide" class="sim-page">
-              <div class="sim-header">
-                <h3 data-i18n="sim.guideTitle">Guía Windows ↔ Mac</h3>
-                <p data-i18n="sim.guideSub">Cómo pasar el teclado de un ordenador a otro en segundos</p>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">1</div>
-                  <div class="sim-card-title" data-i18n="sim.guideStep1">
-                    Pulsa «Liberar» en la tarjeta de tu Magic Keyboard en el equipo actual.
-                  </div>
-                </div>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">2</div>
-                  <div class="sim-card-title" data-i18n="sim.guideStep2">
-                    Apaga el interruptor físico del teclado durante 2 segundos y vuelve a encenderlo.
-                  </div>
-                </div>
-              </div>
-
-              <div class="sim-card">
-                <div class="sim-card-left">
-                  <div class="sim-icon-tile">3</div>
-                  <div class="sim-card-title" data-i18n="sim.guideStep3">
-                    Pulsa «Conectar» en Magic Keyboard Suite en el otro ordenador.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </main>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Características -->
-  <section id="features" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="feat.headerTitle">Diseñado para quienes trabajan entre Mac y PC</h2>
-        <p data-i18n="feat.headerSub">Dos aplicaciones 100% nativas construidas desde una única fuente de diseño.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="feature-card">
-          <div class="feature-icon">BT / USB</div>
-          <h3 data-i18n="feat.1.title">Bluetooth y cable USB</h3>
-          <p data-i18n="feat.1.body">Funciona tanto por Bluetooth (con liberación y reconexión en un clic entre Mac y PC) como conectado directamente por cable Lightning o USB-C.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">100%</div>
-          <h3 data-i18n="feat.2.title">Porcentaje de batería en vivo</h3>
-          <p data-i18n="feat.2.body">Consulta la batería exacta de tus teclados conectados tanto en la tarjeta principal como en la barra de menús de macOS y en Windows 11.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">ISO</div>
-          <h3 data-i18n="feat.3.title">Serigrafía ISO y Boot Camp</h3>
-          <p data-i18n="feat.3.body">Corrige el intercambio físico entre [º ª \] y [&lt; &gt;] en Windows e importa automáticamente las 17 disposiciones oficiales de Apple desde el paquete Boot Camp.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⌥</div>
-          <h3 data-i18n="feat.4.title">Símbolos con Option (⌥)</h3>
-          <p data-i18n="feat.4.body">Escribe @, #, €, [, ], {, }, \, | y ~ usando la tecla Option izquierda exactamente igual en macOS y en Windows.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⌘</div>
-          <h3 data-i18n="feat.5.title">Atajos con Command (⌘)</h3>
-          <p data-i18n="feat.5.body">Usa tus atajos de Mac en Windows, además de Fn + Retroceso para Supr y ⌘ + Flechas para Inicio/Fin, aplicados exclusivamente a teclados de Apple.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">ES · CA · EN</div>
-          <h3 data-i18n="feat.6.title">Català, Español e English</h3>
-          <p data-i18n="feat.6.body">Elige el idioma en la pantalla inicial de bienvenida o cámbialo en tiempo real desde la propia aplicación tanto en macOS como en Windows 11.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Descarga directa (Releases) o Compilación desde el código fuente -->
-  <section id="download" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="dl.title">Descarga el instalador o compila tu propia versión</h2>
-        <p data-i18n="dl.sub">Puedes descargar los instaladores listos para usar desde GitHub Releases (.dmg y .msi) o compilar la aplicación tú mismo desde el código fuente.</p>
-      </div>
-
-      <!-- Opción 1: Instaladores en GitHub Releases -->
-      <div class="grid-2" style="margin-bottom: 24px;">
-        <div class="feature-card">
-          <div class="card-tag" data-i18n="dl.releaseBadge">Instalador oficial • GitHub Releases</div>
-          <h3 data-i18n="dl.macReleaseTitle">macOS — Imagen de disco (.dmg)</h3>
-          <p data-i18n="dl.macReleaseBody">Incluye Magic Keyboard Suite.app lista para arrastrar a la carpeta Aplicaciones en macOS 13 Ventura o superior.</p>
-          <div style="margin-top: 16px;">
-            <a id="release-mac-btn" href="#" class="btn btn-primary">
-              <span data-i18n="dl.macReleaseBtn">Descargar MagicKeyboardSuite-macOS.dmg</span>
+        <!-- Boot Camp Note -->
+        <div class="glass-card bootcamp-card">
+          <div class="bootcamp-text">
+            <span class="card-label" data-i18n="bc.tag">Windows · Required for Apple layouts</span>
+            <h3 data-i18n="bc.title">Import the 17 official Apple layouts (Boot Camp)</h3>
+            <p data-i18n="bc.desc">
+              Download Apple's official Boot Camp Support Software .zip (do not unzip or run setup.exe) and pick it via “Select .zip…” inside Magic Keyboard Suite. The app extracts and verifies only the 17 keyboard layout DLLs.
+            </p>
+          </div>
+          <div class="bootcamp-actions">
+            <a href="https://support.apple.com/106378" target="_blank" rel="noopener" class="btn" data-i18n="bc.btn">
+              Get Boot Camp .zip
             </a>
           </div>
         </div>
 
-        <div class="feature-card">
-          <div class="card-tag" data-i18n="dl.releaseBadge">Instalador oficial • GitHub Releases</div>
-          <h3 data-i18n="dl.winReleaseTitle">Windows 11 — Instalador (.msi)</h3>
-          <p data-i18n="dl.winReleaseBody">Instala la aplicación WinUI 3, el agente en segundo plano y el arranque automático al iniciar sesión en Windows 10/11 (x64).</p>
-          <div style="margin-top: 16px;">
-            <a id="release-win-btn" href="#" class="btn btn-primary">
-              <span data-i18n="dl.winReleaseBtn">Descargar MagicKeyboardSuite-Setup.msi</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nota importante para Windows: Drivers de teclado de Boot Camp -->
-      <div class="feature-card bootcamp-callout" style="margin-bottom: 24px;">
-        <div class="bootcamp-callout-body">
-          <div>
-            <div class="card-tag" data-i18n="bc.badge">Paso recomendado en Windows 11 • Drivers de Boot Camp</div>
-            <h3 data-i18n="bc.title">¿Usas Windows? Importa las 17 disposiciones oficiales de Apple</h3>
-            <p data-i18n="bc.desc">Por licencia de Apple, las librerías propietarias de teclado de Boot Camp (*A.dll) no se incluyen dentro del instalador. Descarga el archivo .zip oficial desde la web de Soporte de Apple (sin descomprimirlo ni ejecutar su setup.exe) y selecciónalo pulsando «Elegir .zip…» dentro de Magic Keyboard Suite: la app extraerá y verificará sola únicamente las disposiciones de teclado.</p>
-          </div>
-          <div class="bootcamp-callout-actions">
-            <a href="https://support.apple.com/106378" target="_blank" rel="noopener" class="btn">
-              <span data-i18n="bc.btn">Descargar Boot Camp (.zip oficial de Apple)</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Opción 2: Compilar desde el código fuente -->
-      <div class="grid-2">
-        <div class="feature-card">
-          <div class="card-tag" data-i18n="os.sourceBadge">Compilar desde el código fuente</div>
-          <h3 data-i18n="os.buildMac">Generar tu propio .dmg en macOS</h3>
-          <p data-i18n="os.buildMacDesc">Requiere Xcode Command Line Tools y Python 3:</p>
-          <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
+        <!-- Collapsible Build from source -->
+        <details class="source-details">
+          <summary data-i18n="src.summary">Build from source</summary>
+          <div class="source-body">
+            <div class="source-col">
+              <h4 data-i18n="src.macTitle">macOS (.app + .dmg)</h4>
+              <p data-i18n="src.macReq">Requires Xcode Command Line Tools &amp; Python 3</p>
+              <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
 cd Magic-Keyboard-Suite
 ./macos/build.sh --dmg</div>
-        </div>
-
-        <div class="feature-card">
-          <div class="card-tag" data-i18n="os.sourceBadge">Compilar desde el código fuente</div>
-          <h3 data-i18n="os.buildWin">Generar tu propio .msi en Windows 11</h3>
-          <p data-i18n="os.buildWinDesc">Requiere .NET 8 SDK y Python 3:</p>
-          <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
+            </div>
+            <div class="source-col">
+              <h4 data-i18n="src.winTitle">Windows 10/11 x64 (.msi)</h4>
+              <p data-i18n="src.winReq">Requires .NET 8 SDK, .NET 4.8 pack, WiX v5 &amp; Python 3</p>
+              <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
 cd Magic-Keyboard-Suite
 powershell -ExecutionPolicy Bypass -File .\windows\build.ps1</div>
-        </div>
+            </div>
+          </div>
+        </details>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
+      <div class="footer-links">
+        <a id="footer-github" href="https://github.com/Marstwan/Magic-Keyboard-Suite" target="_blank" rel="noopener">GitHub</a>
+        <a id="footer-releases" href="https://github.com/Marstwan/Magic-Keyboard-Suite/releases" target="_blank" rel="noopener">Releases</a>
+        <a id="footer-license" href="https://github.com/Marstwan/Magic-Keyboard-Suite/blob/main/LICENSE" target="_blank" rel="noopener">GPLv3 License</a>
+      </div>
       <p data-i18n="footer.disclaimer">
-        Proyecto independiente bajo licencia GPLv3. No afiliado ni respaldado por Apple Inc. ni Microsoft Corporation.
+        Independent open-source project under GPLv3. Not affiliated with or endorsed by Apple Inc. or Microsoft Corporation.
       </p>
     </div>
   </footer>

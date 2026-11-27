@@ -1,256 +1,173 @@
+const SCREENSHOTS = {
+  en: "assets/screenshot-en.png",
+  ca: "assets/screenshot-ca.png",
+  es: "assets/screenshot-es.png"
+};
+
 const I18N = {
-  es: {
-    "nav.preview": "Interfaz",
-    "nav.features": "Características",
-    "nav.download": "Descarga y compilación",
-    "hero.badge": "Open Source (GPLv3) • Bluetooth y cable USB • macOS + Windows 11",
-    "hero.title": "Tu Apple Magic Keyboard, idéntico en macOS y en Windows 11",
-    "hero.subtitle": "Úsalo por Bluetooth o conectado por cable USB (Lightning / USB-C). Pasa el teclado de un equipo a otro en un clic, consulta su batería en tiempo real y mantén exactamente los mismos símbolos con Option (⌥), teclas ISO y atajos con Command (⌘).",
-    "cta.mac": "Descargar para macOS",
-    "cta.macSub": ".dmg • GitHub Releases",
-    "cta.win": "Descargar para Windows 11",
-    "cta.winSub": ".msi • GitHub Releases",
-    "cta.source": "Ver código en GitHub",
-    "sim.version": "Versión 1.0.0",
-    "sim.tabBt": "Teclados Bluetooth",
-    "sim.tabLayout": "Disposición e idioma",
-    "sim.tabShortcuts": "Atajos y multimedia",
-    "sim.tabGuide": "Guía Windows ↔ Mac",
-    "sim.engine": "Motor activo",
-    "sim.currentLayout": "Disposición: Español / Català (Apple)",
-    "sim.btTitle": "Teclados Bluetooth",
-    "sim.btSub": "Conecta tu teclado a este PC por Bluetooth o cable USB, o libéralo para usarlo en el Mac",
-    "sim.stateConnected": "Conectado a este PC",
-    "sim.stateReleased": "Liberado para el Mac",
-    "sim.usbSub": "USB  •  Teclado Apple",
-    "sim.btnRelease": "Liberar para el Mac",
-    "sim.btnConnect": "Conectar en este PC",
-    "sim.layoutTitle": "Disposición e idioma",
-    "sim.layoutSub": "Disposición oficial de Apple (Boot Camp) y selector de idioma en vivo (Català, Español, English)",
-    "sim.driversTitle": "Drivers oficiales de Apple (Boot Camp)",
-    "sim.driversBadge": "Instalados",
-    "sim.driversSub": "17 disposiciones oficiales de Apple listas para usar",
-    "sim.activeLayoutTitle": "Disposición de Apple",
-    "sim.activeLayoutSub": "Cambia al instante entre las 17 disposiciones oficiales de Apple",
-    "sim.appLangTitle": "Idioma de la aplicación",
-    "sim.appLangSub": "Cambia en vivo entre Català, Español e English",
-    "sim.shortcutsTitle": "Atajos y multimedia",
-    "sim.shortcutsSub": "Command (⌘), Supr, Inicio/Fin y teclas de función F1–F12",
-    "sim.cmdTitle": "Command (⌘) y Control (⌃)",
-    "sim.cmdSub": "⌘+C/V/X/Z/A/S/F/T/W, ⌘+Tab, ⌘+Q y ⌘+Espacio",
-    "sim.navTitle": "Supr y navegación con ⌘ + flechas",
-    "sim.navSub": "Fn + Retroceso = Supr  •  ⌘ + ←/→ = Inicio/Fin  •  ⌘ + ↑/↓ = RePág/AvPág",
-    "sim.mediaTitle": "Teclas de función (F1–F12) y controles multimedia",
-    "sim.mediaSub": "F7–F12 actúan como controles multimedia y con Fn como F1–F12",
-    "sim.guideTitle": "Guía Windows ↔ Mac",
-    "sim.guideSub": "Cómo pasar el teclado de un ordenador a otro en segundos",
-    "sim.guideStep1": "Pulsa «Liberar» en la tarjeta de tu Magic Keyboard en el equipo actual.",
-    "sim.guideStep2": "Apaga el interruptor físico del teclado durante 2 segundos y vuelve a encenderlo.",
-    "sim.guideStep3": "Pulsa «Conectar» en Magic Keyboard Suite en el otro ordenador.",
-    "feat.headerTitle": "Diseñado para quienes trabajan entre Mac y PC",
-    "feat.headerSub": "Dos aplicaciones 100% nativas construidas desde una única fuente de diseño.",
-    "feat.1.title": "Bluetooth y cable USB",
-    "feat.1.body": "Funciona tanto por Bluetooth (con liberación y reconexión en un clic entre Mac y PC) como conectado directamente por cable Lightning o USB-C.",
-    "feat.2.title": "Porcentaje de batería en vivo",
-    "feat.2.body": "Consulta la batería exacta de tus teclados conectados tanto en la tarjeta principal como en la barra de menús de macOS y en Windows 11.",
-    "feat.3.title": "Serigrafía ISO y Boot Camp",
-    "feat.3.body": "Corrige el intercambio físico entre [º ª \\] y [< >] en Windows e importa automáticamente las 17 disposiciones oficiales de Apple desde el paquete Boot Camp.",
-    "feat.4.title": "Símbolos con Option (⌥)",
-    "feat.4.body": "Escribe @, #, €, [, ], {, }, \\, | y ~ usando la tecla Option izquierda exactamente igual en macOS y en Windows.",
-    "feat.5.title": "Atajos con Command (⌘)",
-    "feat.5.body": "Usa tus atajos de Mac en Windows, además de Fn + Retroceso para Supr y ⌘ + Flechas para Inicio/Fin, aplicados exclusivamente a teclados de Apple.",
-    "feat.6.title": "Català, Español e English",
-    "feat.6.body": "Elige el idioma en la pantalla inicial de bienvenida o cámbialo en tiempo real desde la propia aplicación tanto en macOS como en Windows 11.",
-    "dl.title": "Descarga el instalador o compila tu propia versión",
-    "dl.sub": "Puedes descargar los instaladores listos para usar desde GitHub Releases (.dmg y .msi) o compilar la aplicación tú mismo desde el código fuente.",
-    "dl.releaseBadge": "Instalador oficial • GitHub Releases",
-    "dl.macReleaseTitle": "macOS — Imagen de disco (.dmg)",
-    "dl.macReleaseBody": "Incluye Magic Keyboard Suite.app lista para arrastrar a la carpeta Aplicaciones en macOS 13 Ventura o superior.",
-    "dl.macReleaseBtn": "Descargar MagicKeyboardSuite-macOS.dmg",
-    "dl.winReleaseTitle": "Windows 11 — Instalador (.msi)",
-    "dl.winReleaseBody": "Instala la aplicación WinUI 3, el agente en segundo plano y el arranque automático al iniciar sesión en Windows 10/11 (x64).",
-    "dl.winReleaseBtn": "Descargar MagicKeyboardSuite-Setup.msi",
-    "bc.badge": "Paso recomendado en Windows 11 • Drivers de Boot Camp",
-    "bc.title": "¿Usas Windows? Importa las 17 disposiciones oficiales de Apple",
-    "bc.desc": "Por licencia de Apple, las librerías propietarias de teclado de Boot Camp (*A.dll) no se incluyen dentro del instalador. Descarga el archivo .zip oficial desde la web de Soporte de Apple (sin descomprimirlo ni ejecutar su setup.exe) y selecciónalo pulsando «Elegir .zip…» dentro de Magic Keyboard Suite: la app extraerá y verificará sola únicamente las disposiciones de teclado.",
-    "bc.btn": "Descargar Boot Camp (.zip oficial de Apple)",
-    "os.sourceBadge": "Compilar desde el código fuente",
-    "os.buildMac": "Generar tu propio .dmg en macOS",
-    "os.buildMacDesc": "Requiere Xcode Command Line Tools y Python 3:",
-    "os.buildWin": "Generar tu propio .msi en Windows 11",
-    "os.buildWinDesc": "Requiere .NET 8 SDK y Python 3:",
-    "footer.disclaimer": "Proyecto independiente bajo licencia GPLv3. No afiliado ni respaldado por Apple Inc. ni Microsoft Corporation."
+  en: {
+    "nav.how": "How it works",
+    "nav.features": "Features",
+    "nav.download": "Download",
+    "hero.eyebrow": "Open Source · macOS 13+ & Windows 10/11",
+    "hero.title": "Your Apple Magic Keyboard, identical on macOS and Windows",
+    "hero.subtitle": "Switch between Mac and PC over Bluetooth or USB with live battery levels, exact Apple keycaps, Option (⌥) symbols, and Command (⌘) shortcuts.",
+    "cta.mac": "Download for macOS",
+    "cta.win": "Download for Windows",
+    "cta.source": "View source on GitHub →",
+    "preview.zoomHint": "Tap to enlarge",
+    "how.title": "Switch computers in seconds",
+    "how.sub": "Magic Keyboard stores one active Bluetooth pairing at a time. Magic Keyboard Suite makes moving effortless.",
+    "how.s1Title": "Release",
+    "how.s1Body": "Click “Release” on your current computer. The app disconnects, forgets the pairing, and remembers your keyboard.",
+    "how.s2Title": "Toggle switch",
+    "how.s2Body": "Turn the keyboard's physical power switch off for 2 seconds and turn it back on.",
+    "how.s3Title": "Connect",
+    "how.s3Body": "Click “Connect” on your other computer from the main window, macOS menu bar, or Windows system tray.",
+    "feat.title": "Built for Mac & Windows workflows",
+    "feat.sub": "Everything you need, nothing you don't — scoped exclusively to Apple hardware.",
+    "feat.1.tag": "Connectivity",
+    "feat.1.title": "Bluetooth, USB & live battery",
+    "feat.1.body": "Works wirelessly or over Lightning / USB-C, with real-time battery percentage in the app, macOS menu bar, and Windows tray.",
+    "feat.2.tag": "Layouts",
+    "feat.2.title": "17 Apple layouts & ISO fix",
+    "feat.2.body": "Swaps the physical ISO keys on Windows automatically and imports Apple's 17 official Boot Camp layouts with Authenticode verification.",
+    "feat.3.tag": "Shortcuts",
+    "feat.3.title": "Mac shortcuts, Option symbols & media",
+    "feat.3.body": "3 modifier modes, Left Option (⌥) for @ # € [ ] { } \\ | ~, word navigation, media keys, and optional Right Option as Fn on Windows.",
+    "feat.4.tag": "Native",
+    "feat.4.title": "SwiftUI & WinUI 3 · EN, CA & ES",
+    "feat.4.body": "Two lightweight native apps built from a single shared design source, with live language switching and open-at-login support.",
+    "dl.title": "Download",
+    "dl.sub": "Ready-to-use installers from GitHub Releases, free and open source under GPLv3.",
+    "dl.macTitle": "macOS Disk Image (.dmg)",
+    "dl.macBody": "Native SwiftUI app with menu bar quick controls. Drag into Applications and you're ready.",
+    "dl.macBtn": "Download .dmg",
+    "dl.winTitle": "Windows Installer (.msi)",
+    "dl.winBody": "Installs the WinUI 3 app, lightweight background tray agent, and optional launch at login.",
+    "dl.winBtn": "Download .msi",
+    "bc.tag": "Windows · Required for Apple layouts",
+    "bc.title": "Import the 17 official Apple layouts (Boot Camp)",
+    "bc.desc": "Download Apple's official Boot Camp Support Software .zip (do not unzip or run setup.exe) and pick it via “Select .zip…” inside Magic Keyboard Suite. The app extracts and verifies only the 17 keyboard layout DLLs.",
+    "bc.btn": "Get Boot Camp .zip",
+    "src.summary": "Build from source",
+    "src.macTitle": "macOS (.app + .dmg)",
+    "src.macReq": "Requires Xcode Command Line Tools & Python 3",
+    "src.winTitle": "Windows 10/11 x64 (.msi)",
+    "src.winReq": "Requires .NET 8 SDK, .NET 4.8 pack, WiX v5 & Python 3",
+    "footer.disclaimer": "Independent open-source project under GPLv3. Not affiliated with or endorsed by Apple Inc. or Microsoft Corporation."
   },
   ca: {
-    "nav.preview": "Interfície",
+    "nav.how": "Com funciona",
     "nav.features": "Característiques",
-    "nav.download": "Descàrrega i compilació",
-    "hero.badge": "Open Source (GPLv3) • Bluetooth i cable USB • macOS + Windows 11",
-    "hero.title": "El teu Apple Magic Keyboard, idèntic a macOS i a Windows 11",
-    "hero.subtitle": "Utilitza'l per Bluetooth o connectat per cable USB (Lightning / USB-C). Passa el teclat d'un equip a un altre en un clic, consulta'n la bateria en temps real i mantén exactament els mateixos símbols amb Option (⌥), tecles ISO i dreceres amb Command (⌘).",
+    "nav.download": "Descàrrega",
+    "hero.eyebrow": "Codi Obert · macOS 13+ i Windows 10/11",
+    "hero.title": "El teu Apple Magic Keyboard, idèntic a macOS i a Windows",
+    "hero.subtitle": "Passa entre Mac i PC per Bluetooth o USB amb bateria en temps real, serigrafia exacta d'Apple, símbols amb Option (⌥) i dreceres amb Command (⌘).",
     "cta.mac": "Baixar per a macOS",
-    "cta.macSub": ".dmg • GitHub Releases",
-    "cta.win": "Baixar per a Windows 11",
-    "cta.winSub": ".msi • GitHub Releases",
-    "cta.source": "Veure codi a GitHub",
-    "sim.version": "Versió 1.0.0",
-    "sim.tabBt": "Teclats Bluetooth",
-    "sim.tabLayout": "Disposició i idioma",
-    "sim.tabShortcuts": "Dreceres i multimèdia",
-    "sim.tabGuide": "Guia Windows ↔ Mac",
-    "sim.engine": "Motor actiu",
-    "sim.currentLayout": "Disposició: Español / Català (Apple)",
-    "sim.btTitle": "Teclats Bluetooth",
-    "sim.btSub": "Connecta el teu teclat a aquest PC per Bluetooth o cable USB, o allibera'l per utilitzar-lo al Mac",
-    "sim.stateConnected": "Connectat a aquest PC",
-    "sim.stateReleased": "Alliberat per al Mac",
-    "sim.usbSub": "USB  •  Teclat Apple",
-    "sim.btnRelease": "Alliberar per al Mac",
-    "sim.btnConnect": "Connectar en aquest PC",
-    "sim.layoutTitle": "Disposició i idioma",
-    "sim.layoutSub": "Disposició oficial d'Apple (Boot Camp) i selector d'idioma en viu (Català, Español, English)",
-    "sim.driversTitle": "Drivers oficials d'Apple (Boot Camp)",
-    "sim.driversBadge": "Instal·lats",
-    "sim.driversSub": "17 disposicions oficials d'Apple a punt per utilitzar",
-    "sim.activeLayoutTitle": "Disposició d'Apple",
-    "sim.activeLayoutSub": "Canvia a l'instant entre les 17 disposicions oficials d'Apple",
-    "sim.appLangTitle": "Idioma de l'aplicació",
-    "sim.appLangSub": "Canvia en viu entre Català, Español i English",
-    "sim.shortcutsTitle": "Dreceres i multimèdia",
-    "sim.shortcutsSub": "Command (⌘), Supr, Inici/Fi i tecles de funció F1–F12",
-    "sim.cmdTitle": "Command (⌘) i Control (⌃)",
-    "sim.cmdSub": "⌘+C/V/X/Z/A/S/F/T/W, ⌘+Tab, ⌘+Q i ⌘+Espai",
-    "sim.navTitle": "Supr i navegació amb ⌘ + fletxes",
-    "sim.navSub": "Fn + Retrocés = Supr  •  ⌘ + ←/→ = Inici/Fi  •  ⌘ + ↑/↓ = RePàg/AvPàg",
-    "sim.mediaTitle": "Tecles de funció (F1–F12) i controls multimèdia",
-    "sim.mediaSub": "F7–F12 actuen com a controls multimèdia i amb Fn com a F1–F12",
-    "sim.guideTitle": "Guia Windows ↔ Mac",
-    "sim.guideSub": "Com passar el teclat d'un ordinador a un altre en segons",
-    "sim.guideStep1": "Prem «Alliberar» a la targeta del teu Magic Keyboard a l'equip actual.",
-    "sim.guideStep2": "Apaga l'interruptor físic del teclat durant 2 segons i torna'l a encendre.",
-    "sim.guideStep3": "Prem «Connectar» a Magic Keyboard Suite a l'altre ordinador.",
-    "feat.headerTitle": "Dissenyat per a qui treballa entre Mac i PC",
-    "feat.headerSub": "Dues aplicacions 100% natives construïdes des d'una única font de disseny.",
-    "feat.1.title": "Bluetooth i cable USB",
-    "feat.1.body": "Funciona tant per Bluetooth (amb alliberament i reconnexió en un clic entre Mac i PC) com connectat directament per cable Lightning o USB-C.",
-    "feat.2.title": "Percentatge de bateria en viu",
-    "feat.2.body": "Consulta la bateria exacta dels teus teclats connectats tant a la targeta principal com a la barra de menús de macOS i a Windows 11.",
-    "feat.3.title": "Serigrafia ISO i Boot Camp",
-    "feat.3.body": "Corregeix l'intercanvi físic entre [º ª \\] i [< >] a Windows i importa automàticament les 17 disposicions oficials d'Apple des del paquet Boot Camp.",
-    "feat.4.title": "Símbols amb Option (⌥)",
-    "feat.4.body": "Escriu @, #, €, [, ], {, }, \\, | i ~ utilitzant la tecla Option esquerra exactament igual a macOS i a Windows.",
-    "feat.5.title": "Dreceres amb Command (⌘)",
-    "feat.5.body": "Utilitza les teves dreceres de Mac a Windows, a més de Fn + Retrocés per a Supr i ⌘ + Fletxes per a Inici/Fi, aplicades exclusivament a teclats d'Apple.",
-    "feat.6.title": "Català, Español i English",
-    "feat.6.body": "Tria l'idioma a la pantalla inicial de benvinguda o canvia'l en temps real des de la pròpia aplicació tant a macOS com a Windows 11.",
-    "dl.title": "Baixa l'instal·lador o compila la teva pròpia versió",
-    "dl.sub": "Pots baixar els instal·ladors a punt per utilitzar des de GitHub Releases (.dmg i .msi) o compilar l'aplicació tu mateix des del codi font.",
-    "dl.releaseBadge": "Instal·lador oficial • GitHub Releases",
-    "dl.macReleaseTitle": "macOS — Imatge de disc (.dmg)",
-    "dl.macReleaseBody": "Inclou Magic Keyboard Suite.app a punt per arrossegar a la carpeta Aplicacions a macOS 13 Ventura o superior.",
-    "dl.macReleaseBtn": "Baixar MagicKeyboardSuite-macOS.dmg",
-    "dl.winReleaseTitle": "Windows 11 — Instal·lador (.msi)",
-    "dl.winReleaseBody": "Instal·la l'aplicació WinUI 3, el servei en segon pla i l'arrencada automàtica en iniciar sessió a Windows 10/11 (x64).",
-    "dl.winReleaseBtn": "Baixar MagicKeyboardSuite-Setup.msi",
-    "bc.badge": "Pas recomanat a Windows 11 • Drivers de Boot Camp",
-    "bc.title": "Utilitzes Windows? Importa les 17 disposicions oficials d'Apple",
-    "bc.desc": "Per llicència d'Apple, les llibreries propietàries de teclat de Boot Camp (*A.dll) no s'inclouen dins l'instal·lador. Baixa el fitxer .zip oficial des del Suport d'Apple (sense descomprimir-lo ni executar el setup.exe) i selecciona'l prement «Triar .zip…» dins de Magic Keyboard Suite: l'app n'extraurà i verificarà sola únicament les disposicions de teclat.",
-    "bc.btn": "Baixar Boot Camp (.zip oficial d'Apple)",
-    "os.sourceBadge": "Compilar des del codi font",
-    "os.buildMac": "Generar el teu propi .dmg a macOS",
-    "os.buildMacDesc": "Requereix Xcode Command Line Tools i Python 3:",
-    "os.buildWin": "Generar el teu propi .msi a Windows 11",
-    "os.buildWinDesc": "Requereix .NET 8 SDK i Python 3:",
-    "footer.disclaimer": "Projecte independent sota llicència GPLv3. No afiliat ni avalat per Apple Inc. ni Microsoft Corporation."
+    "cta.win": "Baixar per a Windows",
+    "cta.source": "Veure codi a GitHub →",
+    "preview.zoomHint": "Toca per ampliar",
+    "how.title": "Canvia d'ordinador en segons",
+    "how.sub": "El Magic Keyboard només guarda un aparellament Bluetooth actiu. Magic Keyboard Suite fa que moure'l sigui molt fàcil.",
+    "how.s1Title": "Allibera",
+    "how.s1Body": "Prem «Alliberar» a l'ordinador actual. L'app el desconnecta, oblida l'aparellament i en recorda l'adreça.",
+    "how.s2Title": "Interruptor físic",
+    "how.s2Body": "Apaga l'interruptor físic del teclat durant 2 segons i torna'l a encendre.",
+    "how.s3Title": "Connecta",
+    "how.s3Body": "Prem «Connectar» a l'altre ordinador des de la finestra principal, la barra de menús de macOS o la safata de Windows.",
+    "feat.title": "Pensat per treballar entre Mac i Windows",
+    "feat.sub": "Tot el que necessites i res que sobri, aplicat exclusivament a maquinari d'Apple.",
+    "feat.1.tag": "Connectivitat",
+    "feat.1.title": "Bluetooth, USB i bateria en viu",
+    "feat.1.body": "Funciona sense fils o per Lightning / USB-C, amb el percentatge de bateria en temps real a l'app, la barra de menús i la safata de Windows.",
+    "feat.2.tag": "Disposicions",
+    "feat.2.title": "17 disposicions Apple i correcció ISO",
+    "feat.2.body": "Intercanvia les tecles físiques ISO automàticament a Windows i importa les 17 disposicions de Boot Camp verificades amb Authenticode.",
+    "feat.3.tag": "Dreceres",
+    "feat.3.title": "Dreceres Mac, símbols Option i multimèdia",
+    "feat.3.body": "3 modes de modificadors, Option esquerra per a @ # € [ ] { } \\ | ~, navegació per paraules, tecles multimèdia i Option dret com a Fn.",
+    "feat.4.tag": "Natiu",
+    "feat.4.title": "SwiftUI i WinUI 3 · CA, ES i EN",
+    "feat.4.body": "Dues apps natives lleugeres creades des d'una única font de disseny, amb canvi d'idioma en viu i inici automàtic.",
+    "dl.title": "Descàrrega",
+    "dl.sub": "Instal·ladors a punt per utilitzar des de GitHub Releases, gratuïts i de codi obert sota GPLv3.",
+    "dl.macTitle": "Imatge de disc macOS (.dmg)",
+    "dl.macBody": "App nativa SwiftUI amb accés ràpid a la barra de menús. Arrossega-la a Aplicacions i llest.",
+    "dl.macBtn": "Baixar .dmg",
+    "dl.winTitle": "Instal·lador Windows (.msi)",
+    "dl.winBody": "Instal·la l'app WinUI 3, l'agent lleuger a la safata del sistema i l'inici automàtic opcional.",
+    "dl.winBtn": "Baixar .msi",
+    "bc.tag": "Windows · Necessari per a les disposicions Apple",
+    "bc.title": "Importa les 17 disposicions oficials d'Apple (Boot Camp)",
+    "bc.desc": "Baixa el .zip oficial de Boot Camp Support Software d'Apple (no el descomprimeixis ni executis setup.exe) i tria'l amb «Triar .zip…» dins l'app. Només s'extrauran i verificaran les 17 llibreries de teclat.",
+    "bc.btn": "Baixar Boot Camp .zip",
+    "src.summary": "Compilar des del codi font",
+    "src.macTitle": "macOS (.app + .dmg)",
+    "src.macReq": "Requereix Xcode Command Line Tools i Python 3",
+    "src.winTitle": "Windows 10/11 x64 (.msi)",
+    "src.winReq": "Requereix .NET 8 SDK, paquet .NET 4.8, WiX v5 i Python 3",
+    "footer.disclaimer": "Projecte independent de codi obert sota llicència GPLv3. No afiliat ni avalat per Apple Inc. ni Microsoft Corporation."
   },
-  en: {
-    "nav.preview": "App Preview",
-    "nav.features": "Features",
-    "nav.download": "Download & Build",
-    "hero.badge": "Open Source (GPLv3) • Bluetooth & USB Cable • macOS + Windows 11",
-    "hero.title": "Your Apple Magic Keyboard, identical on macOS and Windows 11",
-    "hero.subtitle": "Use it over Bluetooth or plugged in via USB cable (Lightning / USB-C). Switch computers in one click, check live battery levels, and keep the exact same Option (⌥) symbols, ISO keys, and Command (⌘) shortcuts.",
-    "cta.mac": "Download for macOS",
-    "cta.macSub": ".dmg • GitHub Releases",
-    "cta.win": "Download for Windows 11",
-    "cta.winSub": ".msi • GitHub Releases",
-    "cta.source": "View on GitHub",
-    "sim.version": "Version 1.0.0",
-    "sim.tabBt": "Bluetooth keyboards",
-    "sim.tabLayout": "Layout & language",
-    "sim.tabShortcuts": "Shortcuts & media",
-    "sim.tabGuide": "Windows ↔ Mac guide",
-    "sim.engine": "Engine running",
-    "sim.currentLayout": "Layout: Español / Català (Apple)",
-    "sim.btTitle": "Bluetooth keyboards",
-    "sim.btSub": "Connect your keyboard to this PC over Bluetooth or USB cable, or release it to use on your Mac",
-    "sim.stateConnected": "Connected to this PC",
-    "sim.stateReleased": "Released for the Mac",
-    "sim.usbSub": "USB  •  Apple keyboard",
-    "sim.btnRelease": "Release for the Mac",
-    "sim.btnConnect": "Connect to this PC",
-    "sim.layoutTitle": "Layout & language",
-    "sim.layoutSub": "Official Apple (Boot Camp) layout and live language switcher (Català, Español, English)",
-    "sim.driversTitle": "Official Apple drivers (Boot Camp)",
-    "sim.driversBadge": "Installed",
-    "sim.driversSub": "17 official Apple keyboard layouts ready to use",
-    "sim.activeLayoutTitle": "Apple layout",
-    "sim.activeLayoutSub": "Switch immediately between all 17 official Apple layouts",
-    "sim.appLangTitle": "App language",
-    "sim.appLangSub": "Switch live between Català, Español and English",
-    "sim.shortcutsTitle": "Shortcuts & media",
-    "sim.shortcutsSub": "Command (⌘), Delete, Home/End and F1–F12 function keys",
-    "sim.cmdTitle": "Command (⌘) and Control (⌃)",
-    "sim.cmdSub": "⌘+C/V/X/Z/A/S/F/T/W, ⌘+Tab, ⌘+Q and ⌘+Space",
-    "sim.navTitle": "Delete and ⌘ + arrow navigation",
-    "sim.navSub": "Fn + Backspace = Delete  •  ⌘ + ←/→ = Home/End  •  ⌘ + ↑/↓ = Page Up/Down",
-    "sim.mediaTitle": "Function keys (F1–F12) & media controls",
-    "sim.mediaSub": "F7–F12 act as media controls and Fn + F1–F12 as standard function keys",
-    "sim.guideTitle": "Windows ↔ Mac guide",
-    "sim.guideSub": "How to move your keyboard between computers in seconds",
-    "sim.guideStep1": "Click “Release” on your Magic Keyboard card on the current computer.",
-    "sim.guideStep2": "Turn the physical keyboard switch off for 2 seconds and turn it back on.",
-    "sim.guideStep3": "Click “Connect” in Magic Keyboard Suite on the other computer.",
-    "feat.headerTitle": "Built for people who work across Mac and PC",
-    "feat.headerSub": "Two 100% native desktop apps generated from a single source of design.",
-    "feat.1.title": "Bluetooth & USB Cable",
-    "feat.1.body": "Works both over Bluetooth (with 1-click release and reconnect between Mac and PC) and when connected via a Lightning or USB-C cable.",
-    "feat.2.title": "Live Battery Percentage",
-    "feat.2.body": "See the exact battery percentage of your connected keyboards both on the main card and in the macOS menu bar and Windows 11.",
-    "feat.3.title": "True ISO Keycaps & Boot Camp",
-    "feat.3.body": "Fixes the physical swap between [º ª \\] and [< >] on Windows and automatically imports all 17 official Apple layouts from the Boot Camp package.",
-    "feat.4.title": "Left Option (⌥) Symbols",
-    "feat.4.body": "Type @, #, €, [, ], {, }, \\, | and ~ with left Option the exact same way on macOS and Windows.",
-    "feat.5.title": "Command (⌘) Shortcuts",
-    "feat.5.body": "Use your Mac shortcuts on Windows, plus Fn + Backspace for Forward Delete and ⌘ + Arrows for Home/End, scoped only to Apple hardware.",
-    "feat.6.title": "Català, Español & English",
-    "feat.6.body": "Choose your language on the initial welcome screen or switch it live inside both the macOS and Windows 11 apps.",
-    "dl.title": "Download the installer or build from source",
-    "dl.sub": "Grab the ready-to-use installers from GitHub Releases (.dmg and .msi) or build the application yourself from source.",
-    "dl.releaseBadge": "Prebuilt installer • GitHub Releases",
-    "dl.macReleaseTitle": "macOS — Disk Image (.dmg)",
-    "dl.macReleaseBody": "Includes Magic Keyboard Suite.app ready to drag into Applications on macOS 13 Ventura or later.",
-    "dl.macReleaseBtn": "Download MagicKeyboardSuite-macOS.dmg",
-    "dl.winReleaseTitle": "Windows 11 — Installer (.msi)",
-    "dl.winReleaseBody": "Installs the WinUI 3 app, the background tray agent, and automatic launch at login on Windows 10/11 (x64).",
-    "dl.winReleaseBtn": "Download MagicKeyboardSuite-Setup.msi",
-    "bc.badge": "Recommended on Windows 11 • Boot Camp Drivers",
-    "bc.title": "Using Windows? Import all 17 official Apple keyboard layouts",
-    "bc.desc": "Due to Apple licensing, Boot Camp's proprietary keyboard layout DLLs (*A.dll) are not bundled inside the installer. Download the official .zip package from Apple Support (do not unzip it or run its setup.exe) and select it via “Select .zip…” inside Magic Keyboard Suite: the app will automatically extract and verify only the keyboard layouts.",
-    "bc.btn": "Download Boot Camp (official Apple .zip)",
-    "os.sourceBadge": "Build from source",
-    "os.buildMac": "Build your own .dmg on macOS",
-    "os.buildMacDesc": "Requires Xcode Command Line Tools and Python 3:",
-    "os.buildWin": "Build your own .msi on Windows 11",
-    "os.buildWinDesc": "Requires .NET 8 SDK and Python 3:",
-    "footer.disclaimer": "Independent open-source project under GPLv3. Not affiliated with or endorsed by Apple Inc. or Microsoft Corporation."
+  es: {
+    "nav.how": "Cómo funciona",
+    "nav.features": "Características",
+    "nav.download": "Descarga",
+    "hero.eyebrow": "Código Abierto · macOS 13+ y Windows 10/11",
+    "hero.title": "Tu Apple Magic Keyboard, idéntico en macOS y Windows",
+    "hero.subtitle": "Cambia entre Mac y PC por Bluetooth o USB con batería en tiempo real, serigrafía exacta de Apple, símbolos con Option (⌥) y atajos con Command (⌘).",
+    "cta.mac": "Descargar para macOS",
+    "cta.win": "Descargar para Windows",
+    "cta.source": "Ver código en GitHub →",
+    "preview.zoomHint": "Toca para ampliar",
+    "how.title": "Cambia de ordenador en segundos",
+    "how.sub": "Magic Keyboard solo guarda un emparejamiento Bluetooth activo. Magic Keyboard Suite hace que cambiar sea rapidísimo.",
+    "how.s1Title": "Libera",
+    "how.s1Body": "Pulsa «Liberar» en tu equipo actual. La app lo desconecta, olvida el emparejamiento y recuerda tu teclado.",
+    "how.s2Title": "Interruptor físico",
+    "how.s2Body": "Apaga el interruptor físico del teclado durante 2 segundos y vuélvelo a encender.",
+    "how.s3Title": "Conecta",
+    "how.s3Body": "Pulsa «Conectar» en el otro equipo desde la ventana principal, la barra de menús de macOS o la bandeja de Windows.",
+    "feat.title": "Pensado para trabajar entre Mac y Windows",
+    "feat.sub": "Todo lo que necesitas y nada que sobre, aplicado exclusivamente a hardware de Apple.",
+    "feat.1.tag": "Conectividad",
+    "feat.1.title": "Bluetooth, USB y batería en vivo",
+    "feat.1.body": "Funciona sin cables o por Lightning / USB-C, con porcentaje de batería en tiempo real en la app, la barra de menús y la bandeja de Windows.",
+    "feat.2.tag": "Disposiciones",
+    "feat.2.title": "17 disposiciones Apple y corrección ISO",
+    "feat.2.body": "Intercambia las teclas físicas ISO automáticamente en Windows e importa las 17 disposiciones de Boot Camp verificadas con Authenticode.",
+    "feat.3.tag": "Atajos",
+    "feat.3.title": "Atajos Mac, símbolos Option y multimedia",
+    "feat.3.body": "3 modos de modificadores, Option izquierda para @ # € [ ] { } \\ | ~, navegación por palabras, teclas multimedia y Option derecho como Fn.",
+    "feat.4.tag": "Nativo",
+    "feat.4.title": "SwiftUI y WinUI 3 · ES, CA y EN",
+    "feat.4.body": "Dos apps nativas ligeras creadas desde una única fuente de diseño, con cambio de idioma en vivo e inicio automático.",
+    "dl.title": "Descarga",
+    "dl.sub": "Instaladores listos para usar desde GitHub Releases, gratuitos y de código abierto bajo GPLv3.",
+    "dl.macTitle": "Imagen de disco macOS (.dmg)",
+    "dl.macBody": "App nativa SwiftUI con acceso rápido en la barra de menús. Arrástrala a Aplicaciones y listo.",
+    "dl.macBtn": "Descargar .dmg",
+    "dl.winTitle": "Instalador Windows (.msi)",
+    "dl.winBody": "Instala la app WinUI 3, el agente ligero en la bandeja del sistema y el arranque automático opcional.",
+    "dl.winBtn": "Descargar .msi",
+    "bc.tag": "Windows · Necesario para las disposiciones Apple",
+    "bc.title": "Importa las 17 disposiciones oficiales de Apple (Boot Camp)",
+    "bc.desc": "Descarga el .zip oficial de Boot Camp Support Software de Apple (no lo descomprimas ni ejecutes setup.exe) y selecciónalo con «Elegir .zip…» dentro de la app. Solo se extraerán y verificarán las 17 librerías de teclado.",
+    "bc.btn": "Descargar Boot Camp .zip",
+    "src.summary": "Compilar desde el código fuente",
+    "src.macTitle": "macOS (.app + .dmg)",
+    "src.macReq": "Requiere Xcode Command Line Tools y Python 3",
+    "src.winTitle": "Windows 10/11 x64 (.msi)",
+    "src.winReq": "Requiere .NET 8 SDK, paquete .NET 4.8, WiX v5 y Python 3",
+    "footer.disclaimer": "Proyecto independiente de código abierto bajo licencia GPLv3. No afiliado ni respaldado por Apple Inc. ni Microsoft Corporation."
   }
 };
 
 function setLanguage(lang) {
-  const dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = I18N[lang] ? lang : "en";
-  try { localStorage.setItem("mks_lang", lang); } catch {}
+  const activeLang = I18N[lang] ? lang : "en";
+  const dict = I18N[activeLang];
+  document.documentElement.lang = activeLang;
+  try { localStorage.setItem("mks_lang", activeLang); } catch {}
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
@@ -260,8 +177,14 @@ function setLanguage(lang) {
   });
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === activeLang);
   });
+
+  const src = SCREENSHOTS[activeLang] || SCREENSHOTS.en;
+  const img = document.getElementById("app-screenshot");
+  const lbImg = document.getElementById("lightbox-img");
+  if (img) img.src = src;
+  if (lbImg) lbImg.src = src;
 }
 
 function initRepoLinks() {
@@ -277,22 +200,129 @@ function initRepoLinks() {
   const dmgUrl = `${repoUrl}/releases/latest/download/MagicKeyboardSuite-macOS.dmg`;
   const msiUrl = `${repoUrl}/releases/latest/download/MagicKeyboardSuite-Setup.msi`;
 
-  const btnMac = document.getElementById("download-mac");
-  const btnWin = document.getElementById("download-win");
-  const btnReleaseMac = document.getElementById("release-mac-btn");
-  const btnReleaseWin = document.getElementById("release-win-btn");
-  const btnRepo = document.getElementById("view-github");
+  const setHref = (id, url) => {
+    const el = document.getElementById(id);
+    if (el) el.href = url;
+  };
 
-  if (btnMac) btnMac.href = dmgUrl;
-  if (btnWin) btnWin.href = msiUrl;
-  if (btnReleaseMac) btnReleaseMac.href = dmgUrl;
-  if (btnReleaseWin) btnReleaseWin.href = msiUrl;
-  if (btnRepo) btnRepo.href = repoUrl;
+  setHref("download-mac", dmgUrl);
+  setHref("download-win", msiUrl);
+  setHref("release-mac-btn", dmgUrl);
+  setHref("release-win-btn", msiUrl);
+  setHref("view-github", repoUrl);
+  setHref("footer-github", repoUrl);
+  setHref("footer-releases", `${repoUrl}/releases`);
+  setHref("footer-license", `${repoUrl}/blob/main/LICENSE`);
 
   const ua = navigator.userAgent.toLowerCase();
+  const btnMac = document.getElementById("download-mac");
+  const btnWin = document.getElementById("download-win");
   if (ua.includes("win") && btnWin && btnMac) {
     btnWin.classList.add("btn-primary");
     btnMac.classList.remove("btn-primary");
+  }
+}
+
+function initLightbox() {
+  const trigger = document.getElementById("screenshot-trigger");
+  const lightbox = document.getElementById("lightbox");
+  const closeBtn = document.getElementById("lightbox-close");
+  if (!trigger || !lightbox) return;
+
+  const open = () => {
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const close = () => {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  trigger.addEventListener("click", open);
+  lightbox.addEventListener("click", close);
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("open")) {
+      close();
+    }
+  });
+}
+
+function initSpatialMotion() {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  if (prefersReduced) return;
+
+  const frame = document.getElementById("screenshot-trigger");
+  if (frame && !isTouch) {
+    frame.addEventListener("mousemove", (e) => {
+      const rect = frame.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      frame.style.transform = `rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg)`;
+    });
+    frame.addEventListener("mouseleave", () => {
+      frame.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+  }
+
+  if (typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
+    return;
+  }
+
+  const gsap = window.gsap;
+  gsap.registerPlugin(window.ScrollTrigger);
+
+  gsap.from(".hero-eyebrow, .hero h1, .hero-sub, .cta-row, .hero-meta-link", {
+    y: 18,
+    opacity: 0,
+    duration: 0.65,
+    stagger: 0.08,
+    ease: "power3.out",
+    clearProps: "transform,opacity"
+  });
+
+  gsap.from("#screenshot-trigger", {
+    y: 26,
+    opacity: 0,
+    duration: 0.75,
+    delay: 0.18,
+    ease: "power3.out",
+    clearProps: "transform,opacity"
+  });
+
+  document.querySelectorAll(".stagger-group").forEach((group) => {
+    const items = group.querySelectorAll(".stagger-item");
+    if (!items.length) return;
+    gsap.from(items, {
+      y: 24,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.09,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+      scrollTrigger: {
+        trigger: group,
+        start: "top 86%",
+        once: true
+      }
+    });
+  });
+
+  if (!isTouch) {
+    gsap.to(".orb-1", {
+      y: 80,
+      ease: "none",
+      scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }
+    });
+    gsap.to(".orb-2", {
+      y: -70,
+      ease: "none",
+      scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }
+    });
   }
 }
 
@@ -303,18 +333,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const initialLang = saved || (I18N[browserLang] ? browserLang : "en");
   setLanguage(initialLang);
   initRepoLinks();
+  initLightbox();
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.addEventListener("click", () => setLanguage(btn.getAttribute("data-lang")));
   });
 
-  document.querySelectorAll(".sim-nav-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-tab");
-      document.querySelectorAll(".sim-nav-btn").forEach((b) => b.classList.toggle("active", b === btn));
-      document.querySelectorAll(".sim-page").forEach((p) => {
-        p.classList.toggle("active", p.id === `sim-page-${target}`);
-      });
-    });
-  });
+  initSpatialMotion();
 });
