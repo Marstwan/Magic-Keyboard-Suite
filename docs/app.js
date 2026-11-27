@@ -51,9 +51,9 @@ const I18N = {
     "bc.desc": "Download Apple's official Boot Camp Support Software .zip (do not unzip or run setup.exe) and pick it via “Select .zip…” inside Magic Keyboard Suite. The app extracts and verifies only the 17 keyboard layout DLLs.",
     "bc.btn": "Get Boot Camp .zip",
     "src.summary": "Build from source",
-    "src.macTitle": "macOS (.app + .dmg)",
+    "src.copy": "Copy",
+    "src.copied": "Copied",
     "src.macReq": "Requires Xcode Command Line Tools & Python 3",
-    "src.winTitle": "Windows 10/11 x64 (.msi)",
     "src.winReq": "Requires .NET 8 SDK, .NET 4.8 pack, WiX v5 & Python 3",
     "footer.disclaimer": "Independent open-source project under GPLv3. Not affiliated with or endorsed by Apple Inc. or Microsoft Corporation."
   },
@@ -103,9 +103,9 @@ const I18N = {
     "bc.desc": "Baixa el .zip oficial de Boot Camp Support Software d'Apple (no el descomprimeixis ni executis setup.exe) i tria'l amb «Triar .zip…» dins l'app. Només s'extrauran i verificaran les 17 llibreries de teclat.",
     "bc.btn": "Baixar Boot Camp .zip",
     "src.summary": "Compilar des del codi font",
-    "src.macTitle": "macOS (.app + .dmg)",
+    "src.copy": "Copiar",
+    "src.copied": "Copiat",
     "src.macReq": "Requereix Xcode Command Line Tools i Python 3",
-    "src.winTitle": "Windows 10/11 x64 (.msi)",
     "src.winReq": "Requereix .NET 8 SDK, paquet .NET 4.8, WiX v5 i Python 3",
     "footer.disclaimer": "Projecte independent de codi obert sota llicència GPLv3. No afiliat ni avalat per Apple Inc. ni Microsoft Corporation."
   },
@@ -155,19 +155,47 @@ const I18N = {
     "bc.desc": "Descarga el .zip oficial de Boot Camp Support Software de Apple (no lo descomprimas ni ejecutes setup.exe) y selecciónalo con «Elegir .zip…» dentro de la app. Solo se extraerán y verificarán las 17 librerías de teclado.",
     "bc.btn": "Descargar Boot Camp .zip",
     "src.summary": "Compilar desde el código fuente",
-    "src.macTitle": "macOS (.app + .dmg)",
+    "src.copy": "Copiar",
+    "src.copied": "Copiado",
     "src.macReq": "Requiere Xcode Command Line Tools y Python 3",
-    "src.winTitle": "Windows 10/11 x64 (.msi)",
     "src.winReq": "Requiere .NET 8 SDK, paquete .NET 4.8, WiX v5 y Python 3",
     "footer.disclaimer": "Proyecto independiente de código abierto bajo licencia GPLv3. No afiliado ni respaldado por Apple Inc. ni Microsoft Corporation."
   }
 };
 
+const BUILD_CMDS = {
+  mac: "git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git\ncd Magic-Keyboard-Suite\n./macos/build.sh --dmg",
+  win: "git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git\ncd Magic-Keyboard-Suite\npowershell -ExecutionPolicy Bypass -File .\\windows\\build.ps1"
+};
+
+let currentLang = "en";
+let currentBuildOs = "mac";
+
+function setBuildOs(os) {
+  currentBuildOs = os === "win" ? "win" : "mac";
+  const dict = I18N[currentLang] || I18N.en;
+  const reqEl = document.getElementById("source-req");
+  const codeEl = document.getElementById("source-code");
+  if (reqEl) {
+    const key = currentBuildOs === "win" ? "src.winReq" : "src.macReq";
+    reqEl.setAttribute("data-i18n", key);
+    reqEl.textContent = dict[key];
+  }
+  if (codeEl) {
+    codeEl.textContent = BUILD_CMDS[currentBuildOs];
+  }
+  document.querySelectorAll(".source-tab").forEach((btn) => {
+    const active = btn.getAttribute("data-build-os") === currentBuildOs;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", String(active));
+  });
+}
+
 function setLanguage(lang) {
-  const activeLang = I18N[lang] ? lang : "en";
-  const dict = I18N[activeLang];
-  document.documentElement.lang = activeLang;
-  try { localStorage.setItem("mks_lang", activeLang); } catch {}
+  currentLang = I18N[lang] ? lang : "en";
+  const dict = I18N[currentLang];
+  document.documentElement.lang = currentLang;
+  try { localStorage.setItem("mks_lang", currentLang); } catch {}
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
@@ -177,10 +205,10 @@ function setLanguage(lang) {
   });
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-lang") === activeLang);
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
   });
 
-  const src = SCREENSHOTS[activeLang] || SCREENSHOTS.en;
+  const src = SCREENSHOTS[currentLang] || SCREENSHOTS.en;
   const img = document.getElementById("app-screenshot");
   const lbImg = document.getElementById("lightbox-img");
   if (img) img.src = src;
@@ -335,9 +363,30 @@ document.addEventListener("DOMContentLoaded", () => {
   initRepoLinks();
   initLightbox();
 
+  const isWin = navigator.userAgent.toLowerCase().includes("win");
+  setBuildOs(isWin ? "win" : "mac");
+
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.addEventListener("click", () => setLanguage(btn.getAttribute("data-lang")));
   });
+
+  document.querySelectorAll(".source-tab").forEach((btn) => {
+    btn.addEventListener("click", () => setBuildOs(btn.getAttribute("data-build-os")));
+  });
+
+  const copyBtn = document.getElementById("copy-build-cmd");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(BUILD_CMDS[currentBuildOs]);
+        const dict = I18N[currentLang] || I18N.en;
+        copyBtn.textContent = dict["src.copied"];
+        setTimeout(() => {
+          copyBtn.textContent = (I18N[currentLang] || I18N.en)["src.copy"];
+        }, 1600);
+      } catch {}
+    });
+  }
 
   initSpatialMotion();
 });

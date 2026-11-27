@@ -211,20 +211,17 @@
         <details class="source-details">
           <summary data-i18n="src.summary">Build from source</summary>
           <div class="source-body">
-            <div class="source-col">
-              <h4 data-i18n="src.macTitle">macOS (.app + .dmg)</h4>
-              <p data-i18n="src.macReq">Requires Xcode Command Line Tools &amp; Python 3</p>
-              <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
-cd Magic-Keyboard-Suite
-./macos/build.sh --dmg</div>
+            <div class="source-toolbar">
+              <div class="source-tabs" role="tablist" aria-label="Build platform">
+                <button type="button" class="source-tab active" role="tab" aria-selected="true" data-build-os="mac">macOS</button>
+                <button type="button" class="source-tab" role="tab" aria-selected="false" data-build-os="win">Windows</button>
+              </div>
+              <button type="button" id="copy-build-cmd" class="copy-btn" data-i18n="src.copy">Copy</button>
             </div>
-            <div class="source-col">
-              <h4 data-i18n="src.winTitle">Windows 10/11 x64 (.msi)</h4>
-              <p data-i18n="src.winReq">Requires .NET 8 SDK, .NET 4.8 pack, WiX v5 &amp; Python 3</p>
-              <div class="code-block">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
+            <p id="source-req" class="source-req" data-i18n="src.macReq">Requires Xcode Command Line Tools &amp; Python 3</p>
+            <pre class="code-block"><code id="source-code">git clone https://github.com/Marstwan/Magic-Keyboard-Suite.git
 cd Magic-Keyboard-Suite
-powershell -ExecutionPolicy Bypass -File .\windows\build.ps1</div>
-            </div>
+./macos/build.sh --dmg</code></pre>
           </div>
         </details>
       </div>
